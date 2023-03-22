@@ -1,0 +1,288 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Beranda{% endblock title %}
+
+{% block content %}
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <!-- Text Slider -->
+                        <div class="slider-container">
+                            <div class="swiper-container text-slider">
+                                <div class="swiper-wrapper">
+                                    
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-xl-7">
+                                                <div class="image-container">
+                                                    <img class="img-fluid" src="{% static 'revo/web/images/headers/1.jpg' %}" alt="alternative">
+                                                </div> <!-- end of image-container -->
+                                            </div> <!-- end of col -->
+                                            <div class="col-lg-6 col-xl-5">
+                                                <div class="text-container">
+                                                    <h1 class="h1-large">Selamat datang di Mbah Gondo</h1>
+                                                    <p class="p-large">Kami menawarkan bebek dan ayam kampung frozen berkualitas tinggi untuk Anda nikmati di rumah!</p>
+                                                    <a class="btn-solid-lg page-scroll" href="#registration">HARGA KHUSUS</a>
+                                                    <a class="btn-outline-lg" href="">DOWNLOAD KATALOG</a>
+                                                </div> <!-- end of text-container -->
+                                            </div> <!-- end of col -->
+                                        </div> <!-- end of row -->
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-xl-7">
+                                                <div class="image-container">
+                                                    <img class="img-fluid" src="{% static 'revo/web/images/headers/2.jpg' %}" alt="alternative">
+                                                </div> <!-- end of image-container -->
+                                            </div> <!-- end of col -->
+                                            <div class="col-lg-6 col-xl-5">
+                                                <div class="text-container">
+                                                    <h1 class="h1-large">Kualitas Terjamin</h1>
+                                                    <p class="p-large">Daging bebek dan ayam dipotong dengan hati-hati dan dibekukan segera setelah diproses untuk menjaga kesegaran dan rasa alami yang tahan lama.</p>
+                                                    <a class="btn-solid-lg page-scroll" href="#registration">HARGA KHUSUS</a>
+                                                    <a class="btn-outline-lg" href="">DOWNLOAD KATALOG</a>
+                                                </div> <!-- end of text-container -->
+                                            </div> <!-- end of col -->
+                                        </div> <!-- end of row -->
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-xl-7">
+                                                <div class="image-container">
+                                                    <img class="img-fluid" src="{% static 'revo/web/images/headers/3.jpg' %}" alt="alternative">
+                                                </div> <!-- end of image-container -->
+                                            </div> <!-- end of col -->
+                                            <div class="col-lg-6 col-xl-5">
+                                                <div class="text-container">
+                                                    <h1 class="h1-large">Produk Bervariasi</h1>
+                                                    <p class="p-large">Kami menawarkan berbagai macam produk bebek dan ayam frozen. Semua produk kami mudah dipersiapkan dan cocok untuk berbagai macam hidangan, mulai dari hidangan sehari-hari hingga hidangan spesial saat merayakan momen istimewa.</p>
+                                                    <a class="btn-solid-lg page-scroll" href="#registration">HARGA KHUSUS</a>
+                                                    <a class="btn-outline-lg" href="">DOWNLOAD KATALOG</a>
+                                                </div> <!-- end of text-container -->
+                                            </div> <!-- end of col -->
+                                        </div> <!-- end of row -->
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                </div> <!-- end of swiper-wrapper -->
+                                
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <!-- end of add arrows -->
+
+                            </div> <!-- end of swiper-container -->
+                        </div> <!-- end of slider-container -->
+                        <!-- end of text slider -->
+
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+               
+            </div> <!-- end of container -->
+        </header> <!-- end of header -->
+        <!-- end of header -->
+
+        <!-- Running Text -->
+        <div class="runtext-container">
+            <div class="main-runtext">
+                <marquee direction="" onmouseover="this.stop();" onmouseout="this.start();">                
+                    <div class="holder">                    
+                        <div class="text-container text-uppercase">
+                            <a href="" class="runtext">
+                                Bebek peking mentah siap bumbu frozen |
+                            </a>
+                        </div>
+                        <div class="text-container text-uppercase">
+                            <a href="" class="runtext">
+                                Bebek peking ungkep rempah frozen |
+                            </a>
+                        </div>
+                        <div class="text-container text-uppercase">
+                            <a href="" class="runtext">
+                                Ayam kampung ungkep rempah frozen |
+                            </a>
+                        </div>
+                    </div>
+                
+                </marquee>
+            </div>
+        </div>        
+        <!-- End Running Text -->
+
+        <!-- Registration -->
+        <div id="registration" class="form-1 bg-dark-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h2>HARGA KHUSUS</h2>
+                            <p>Kami memahami bahwa harga menjadi salah satu faktor penting dalam memilih produk makanan. Oleh karena itu, kami memberikan harga yang bersaing tanpa mengorbankan kualitas produk kami. Dengan harga khusus, anda dapat:</p>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i><div class="media-body"><strong>Diskon Harga</strong> untuk pembelian dalam jumlah banyak</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i><div class="media-body"><strong>Gratis Pengiriman</strong> untuk wilayah Surakarta dan sekitarnya</div>
+                                </li>                                
+                            </ul>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6">
+
+                        <!-- Registration Form -->
+                        <form id="registrationForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="rname" required>
+                                <label class="label-control" for="rname">Nama</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control-input" id="rno_wa">
+                                <label class="label-control" for="rno_wa">Nomor Whatsapp (Opsional)</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control-input" id="remail">
+                                <label class="label-control" for="remail">Email (Opsional)</label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control-submit-button">DAPATKAN HARGA KHUSUS</button>
+                            </div>
+                        </form>
+                        <!-- end of registration form -->
+
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of form-1 -->
+        <!-- end of registration -->
+
+
+        <!-- Details 1 -->
+        <div id="details" class="basic-1 bg-dark-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <img class="img-fluid" src="{% static 'revo/web/images/details/1.jpg' %}" alt="alternative">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="text-container">
+                            <h2>Variasi Produk</h2>
+                            <p>Kami dengan bangga mempersembahkan bebek dan ayam kampung segar yang telah diproses dengan sempurna untuk memastikan kualitas terbaik untuk pelanggan kami. </p>                            
+                            <a class="btn-solid-reg" href="{% url 'landingpage:menu'%}">LIHAT SEMUA PRODUK</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of basic-1 -->
+        <!-- end of details 1 -->
+
+
+        <!-- Details 2 -->
+        <div class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="tabs-container">
+                
+                            <!-- Tabs Links -->
+                            <ul class="nav nav-tabs" id="siteTabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">PERAWATAN</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">PEMOTONGAN</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">PACKAGING</a>
+                                </li>
+                            </ul>
+                            <!-- end of tabs links -->
+                            
+                            <!-- Tabs Content -->
+                            <div class="tab-content" id="siteTabsContent">
+            
+                                <!-- Tab -->
+                                <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                                    <h4>Proses Pengolahan</h4>
+                                    <p>Kami memahami betapa pentingnya makanan yang sehat dan berkualitas bagi keluarga Anda, dan itulah mengapa kami sangat memperhatikan kesejahteraan dan kesehatan hewan yang kami pelihara.</p>
+                                    <p>Semua bebek dan ayam kami berasal dari peternakan kampung yang terpercaya dan diawasi secara ketat untuk memastikan bahwa mereka dipelihara dengan baik dan sehat.</p>
+                                </div> <!-- end of tab-pane --> 
+                                <!-- end of tab -->
+            
+                                <!-- Tab -->
+                                <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                                    <p>Sebelum dilakukan pemotongan, kami memastikan bahwa bebek dan ayam kami telah diproses dengan baik dan sehat, dan telah melewati serangkaian uji kesehatan yang ketat.</p>
+                                    <p>Setelah itu, bebek dan ayam dipotong dengan teliti dan hati-hati untuk memastikan bahwa semua bagian dagingnya dipotong dengan baik dan terpisah dari bagian yang tidak diinginkan.</p>
+                                </div> <!-- end of tab-pane -->
+                                <!-- end of tab -->
+            
+                                <!-- Tab -->
+                                <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+                                    <p>Setiap produk bebek dan ayam frozen kami dikemas dengan hati-hati dan dipilih dengan cermat untuk memastikan kualitas daging yang terjaga selama pengiriman.
+                                    </p>
+                                    <p>
+                                        Kemasan dibungkus dengan lapisan tambahan untuk melindungi produk dari guncangan dan kerusakan selama pengiriman.
+                                    </p>
+                                    <p>Kami juga menggunakan bahan kemasan berkualitas tinggi yang aman dan ramah lingkungan untuk memastikan produk Anda tetap segar dan terjaga selama pengiriman.</p>
+                                </div> <!-- end of tab-pane -->
+                                <!-- end of tab -->
+            
+                            </div> <!-- end of tab-content -->
+                            <!-- end of tabs content -->
+            
+                        </div> <!-- end of tabs-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <img class="img-fluid" src="{% static 'revo/web/images/details/2.jpg' %}" alt="alternative">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of tabs -->
+        <!-- end of details 2 -->
+
+
+        <!-- Video -->
+        <div class="basic-2 bg-dark-blue mb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="h2-heading">Tentang Kami</h2>
+                        <p class="p-heading">Kenali kami lebih dalam dengan menonton bagaimana semua proses kegiatan kami.</p>
+
+                        <!-- Video Preview -->
+                        <div class="image-container">
+                            <div class="video-wrapper">
+                                <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                    <img class="img-fluid" src="{% static 'revo/web/images/video-preview.jpg' %}" alt="alternative">
+                                    <span class="video-play-button">
+                                        <span></span>
+                                    </span>
+                                </a>
+                            </div> <!-- end of video-wrapper -->
+                        </div> <!-- end of image-container -->
+                        <!-- end of video preview -->
+
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of basic-2 -->
+        <!-- end of video -->        
+
+{% endblock content %}
+
+
