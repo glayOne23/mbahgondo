@@ -565,7 +565,8 @@ input[type='checkbox'] {
 /*****************/
 .header {
 	padding-top: 7.5rem;
-	padding-bottom: 7.5rem;
+	/* padding-bottom: 7.5rem; */
+	padding-bottom: 1rem;
 	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/header-background3.png') center center no-repeat;
 	background-size: cover;
 }
@@ -1660,8 +1661,8 @@ a:hover.back-to-top {
 
 	/* Header */
 	.header {
-		padding-top: 14rem;
-		padding-bottom: 10rem;
+		padding-top: 13rem;
+		padding-bottom: 11rem;
 	}
 
 	.header .swiper-container {
@@ -1909,13 +1910,45 @@ a:hover.back-to-top {
 }
 
 .runtext {
-	font-size: 2.5rem;
+	/* font-size: 2.5rem;
 	line-height: 4rem;
-	font-weight: 800;
-	display: inline;
+	font-weight: 800; */
+	/* display: inline; */
 	text-decoration: none;
 }
 
 .runtext:hover {	
 	text-decoration: none;
 }
+
+
+/* FONT AWESOME GENERIC BEAT */ 
+.fa-beat {
+	animation:fa-beat 5s ease infinite;
+  }
+  @keyframes fa-beat {
+	0% {
+	  transform:scale(1);
+	}
+	5% {
+	  transform:scale(1.25);
+	}
+	20% {
+	  transform:scale(1);
+	}
+	30% {
+	  transform:scale(1);
+	}
+	35% {
+	  transform:scale(1.25);
+	}
+	50% {
+	  transform:scale(1);
+	}
+	55% {
+	  transform:scale(1.25);
+	}
+	70% {
+	  transform:scale(1);
+	}
+  }
