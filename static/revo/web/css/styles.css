@@ -429,9 +429,10 @@ input[type='checkbox'] {
 }
 
 .navbar .logo-image img {
-    /* width: 139px; */
-	width: auto;
-	height: 3em;
+    width: 70px;
+	/* width: auto; */
+	/* height: 3em;	 */
+	height: auto;
 }
 
 .navbar .logo-text {
@@ -567,7 +568,7 @@ input[type='checkbox'] {
 	padding-top: 7.5rem;
 	/* padding-bottom: 7.5rem; */
 	padding-bottom: 1rem;
-	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/header-background3.png') center center no-repeat;
+	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/header-background4.png') center center no-repeat;
 	background-size: cover;
 }
 

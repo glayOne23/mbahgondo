@@ -1,0 +1,59 @@
+{% extends 'dashboard/layouts/base.html' %}
+{% load static %}
+
+{% block title %} Beranda {% endblock %}
+
+
+{% block content %} 
+
+<div class="row">
+    <!-- tabel -->
+              <!-- orders table -->
+              <div class="col-12 col-lg-12 mt-4">
+                <div class="bcard card h-100 pt-1 pt-lg-2">
+
+                  <div class="card-header border-0">
+                    <h5 class="card-title text-dark-m2 pl-1 text-110">                                            
+                      Lokasi Cuitan <span class="text-green">fsfdsfsad</span>                        
+                    </h5>                           
+                  </div>
+
+
+                  <div class="card-body p-0">                    
+                    <div class="table-responsive-md">
+                      <table class="table table-border-x brc-secondary-l3 mb-0">
+                        <thead>
+                          <tr class="text-80 text-default-d3 bgc-default-l4">
+                            <th class="pl-2 pl-lg-4">Akun Twitter</th>
+                            <th>Cuitan</th>
+                            <th>Waktu Cuitan</th>
+                            <th>Link Twitter</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for analitic in analitics %}                            
+                            <tr class="bgc-h-secondary-l4">
+                              <td class="pl-2 pl-lg-4">{{analitic.twitter_username}}</td>
+                              <td class="text-dark-m2 text-85">{{analitic.twitter_text}}</td>                        
+                              <td class=" text-dark-m2 text-85">{{analitic.twitter_created_at}}</td>
+                              <td class=" text-dark-m2 text-85">
+                                <a href="{{analitic.twitter_link}}" class="btn btn-sm btn-primary m-1" target="_blank">
+                                  Menuju Cuitan
+                                  <i class="fab fa-twitter"></i>
+                                </a>                                  
+                              </td>
+                            </tr>
+                          {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div><!-- /.table-responsive-md -->                    
+
+                  </div><!-- /.card-body -->
+                </div>
+              </div>    
+
+</div>
+
+{% endblock %}

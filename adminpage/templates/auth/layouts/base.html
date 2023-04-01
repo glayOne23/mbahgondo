@@ -1,0 +1,67 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+  <head>    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <base href="../" />
+
+    <title>MBAHGONDO</title>
+
+    <!-- include common vendor stylesheets & fontawesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'ace4/node_modules/bootstrap/dist/css/bootstrap.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'ace4/node_modules/@fontawesome/css/all.min.css' %}">
+
+    <!-- include vendor stylesheets used in "Login" page. see "/views//pages/partials/page-login/@vendor-stylesheets.hbs" -->
+
+
+    <!-- include fonts -->
+    <link rel="stylesheet" type="text/css" href="{% static 'ace4/dist/css/ace-font.css' %}">
+
+
+
+    <!-- ace.css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'ace4/dist/css/ace.css' %}">
+
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo/favicon.ico' %}" />
+
+    <!-- "Login" page styles, specific to this page for demo only -->
+    <link rel="stylesheet" type="text/css" href="{% static 'ace4/views/pages/page-login/@page-style.css' %}">
+  </head>
+
+  <body>
+    <div class="body-container">
+
+      {% block content %}{% endblock %}
+
+    </div>
+
+    <script src="{% static 'ace4/node_modules/jquery/dist/jquery.js' %}"></script>
+    <script src="{% static 'ace4/node_modules/popper.js/dist/umd/popper.js' %}"></script>
+    <script src="{% static 'ace4/node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
+
+
+    <!-- include vendor scripts used in "Login" page. see "/views//pages/partials/page-login/@vendor-scripts.hbs" -->
+    <script src="{% static 'ace4/node_modules/sweetalert2/dist/sweetalert2.all.js' %}"></script>
+
+    <!-- include ace.js -->
+    <script src="{% static 'ace4/dist/js/ace.js' %}"></script>
+
+
+
+    <!-- demo.js is only for Ace's demo and you shouldn't use it -->
+    <script src="{% static 'ace4/app/browser/demo.js' %}"></script>
+
+
+
+    <!-- "Login" page script to enable its demo functionality -->
+    <script src="{% static 'ace4/views/pages/page-login/@page-script.js' %}"></script>
+    
+    {% block javascript %}{% endblock %}
+  </body>
+
+</html>

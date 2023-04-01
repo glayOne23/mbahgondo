@@ -21,7 +21,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-        path('', include('landingpage.urls', namespace='landingpage')),
+    path('', include('landingpage.urls', namespace='landingpage')),    
+    path('adminpage/', include('adminpage.urls', namespace='adminpage')),    
 ]
 
 
