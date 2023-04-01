@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <base href="" />
 
-    <title>{% block title %}{% endblock %} - Dashboard Mbah Gondo</title>
+    <title>{% block title %}{% endblock %} - Mbah Gondo</title>
 
     <!-- include common vendor stylesheets & fontawesome -->
     <link rel="stylesheet" type="text/css" href="{% static 'ace4/node_modules/bootstrap/dist/css/bootstrap.css' %} ">
@@ -80,13 +80,7 @@
 
             <!-- messages -->
             {% include "dashboard/layouts/messages.html" %}
-            <!-- end messages -->
-
-            <div class="page-header border-0 pb-3">
-              <h1 class="text-primary-m3 pb-0 mb-1 text-130">
-                {% block title-h1 %}{% endblock %}
-              </h1>
-            </div>
+            <!-- end messages -->         
 
             {% block content %}{% endblock %}
 

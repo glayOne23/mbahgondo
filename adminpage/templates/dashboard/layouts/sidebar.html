@@ -59,8 +59,8 @@
 
 
               <!-- home -->
-              <li class="nav-item {% if 'home' == request.resolver_match.url_name %} active {%endif%}">
-                <a href="" class="nav-link">                  
+              <li class="nav-item {% if page == 'dashboard' %} active {%endif%}">
+                <a href="{% url 'adminpage:dashboard' %}" class="nav-link">                  
                   <i class="nav-icon fa fa-cube nav-icon-round bgc-primary-tp1"></i>
                   <span class="nav-text fadeable">
                     <span>Dashboard</span>
@@ -68,7 +68,44 @@
                 </a>
                 <b class="sub-arrow"></b>
               </li>
+              <!-- end home -->
           
+              <!-- Menu -->
+              <li class="nav-item {% if sidebar == 'menu' %} active open {% endif %}">
+                <a  class="nav-link dropdown-toggle collapsed">
+                  <i class="nav-icon fa fa-drumstick-bite nav-icon-round bgc-orange-tp1"></i>
+                  <span class="nav-text fadeable">
+                    <span>Menu</span>
+                  </span>
+  
+                  <b class="caret fa fa-angle-left rt-n90"></b>
+                </a>
+  
+                <div class="hideable submenu collapse {% if sidebar == 'menu' %} show {% endif %}">
+                  <ul class="submenu-inner">
+  
+                    <li class="nav-item {% if page == 'menu.index' %} active {% endif %}">
+                      <a href="{% url 'adminpage:menu.index' %}" class="nav-link">
+                        <span class="nav-text">
+                          <span>Menu</span>
+                        </span>
+                      </a>
+                    </li>
+
+                    <li class="nav-item {% if page == 'kategori_menu.index' %} active {% endif %}">
+                      <a href="{% url 'adminpage:kategori_menu.index' %}" class="nav-link">
+                        <span class="nav-text">
+                          <span>Kategori Menu</span>
+                        </span>
+                      </a>
+                    </li>
+
+
+                  </ul>
+                </div>
+                <b class="sub-arrow"></b>
+              </li>                              
+
               
             </ul>
           </nav>

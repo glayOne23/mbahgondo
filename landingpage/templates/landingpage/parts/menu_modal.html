@@ -1,0 +1,63 @@
+{% load static %}
+
+<!-- Details Lightbox -->
+<!-- Lightbox -->
+<div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
+    <div class="row">
+        <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+        <div class="col-lg-8">
+            <div class="image-container">
+                <img class="img-fluid" src="{% static 'revo/web/images/menu/header_1.png' %}" id="menu_modal_gambar" alt="alternative">
+            </div> <!-- end of image-container -->
+        </div> <!-- end of col -->
+        <div class="col-lg-4 align-items-center ">
+            <div class="align-middle align-items-center ">
+                <h3 id="menu_modal_nama">Bebek Peking Mentah Siap Bumbu Frozen</h3>
+                <hr>
+                <p id="menu_modal_keterangan">Bebek yang sudah dibersihkan dan dipotong dengan bumbu kaya rempah-rempah.</p>                        
+                <ul class="list-unstyled li-space-lg">
+                    <li class="media">
+                        <i class="fas fa-square"></i><div class="media-body" id="menu_modal_harga"></div>
+                    </li>
+                </ul>
+                <a class="btn-solid-reg mfp-close mb-2" href="">DOWNLOAD KATALOG</a> 
+                <button class="btn-outline-reg mfp-close as-button" type="button">KEMBALI</button>
+            </div>
+        </div> <!-- end of col -->
+    </div> <!-- end of row -->
+</div> <!-- end of lightbox-basic -->
+<!-- end of lightbox -->
+<!-- end of details lightbox -->
+
+
+<script>
+    const rupiah = (number)=>{
+        return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR"
+        }).format(number);
+    }
+
+    async function getMenu(id) {
+        let url = `/menu/${id}/json`;
+        try {
+            let res = await fetch(url);            
+            return await res.json();
+        } catch (error) {
+            console.log(error);
+        }
+    }    
+
+    async function renderMenuModal(id) {
+        let menus = await getMenu(id);                  
+        nama = document.getElementById("menu_modal_nama")
+        keterangan = document.getElementById("menu_modal_keterangan")
+        harga = document.getElementById("menu_modal_harga")
+        gambar = document.getElementById("menu_modal_gambar")        
+        nama.innerHTML = menus['data'][0]['nama']
+        keterangan.innerHTML = menus['data'][0]['keterangan']
+        harga.innerHTML = rupiah(`${menus['data'][0]['harga']}`)
+        gambar.src = menus['data'][0]['gambar']
+    }
+
+</script>

@@ -1,0 +1,102 @@
+{% extends 'dashboard/layouts/base.html' %}
+{% load static %}
+
+{% block title %} Kategori Menu {% endblock %}
+
+
+{% block content %} 
+
+<div class="page-content">
+
+    <div class="page-header border-0 pb-3">
+      <h1 class="page-title text-primary-d2 text-150">
+        Kategori Menu
+        <small class="page-info text-secondary-d2 text-nowrap">
+          <i class="fa fa-angle-double-right text-80"></i>
+          Tabel
+        </small>
+      </h1>
+        
+    </div>    
+
+    <div class="card bcard h-auto">
+      
+      <!-- Header Table -->
+      <div class="d-flex justify-content-end flex-column flex-sm-row px-2 px-sm-0 m-2">                                
+        <a type="button" class="btn btn-blue px-3 radius-round border-2 brc-black-tp10" href="{% url 'adminpage:kategori_menu.add' %}">
+            <i class="fa fa-plus-circle"></i> Tambah kategori
+        </a>                    
+      </div>
+
+      <div class="table-responsive">
+
+        <table id="datatable" class="table table-border-x brc-secondary-l3 mb-0">          
+          <thead class="sticky-nav text-secondary-m1 text-uppercase text-85">
+            <tr>
+              <th class="pl-2 pl-lg-4">No</th>
+              <th>Nama</th>
+              <th>Gambar Kategori</th>
+              <th>Gambar Text</th>              
+              <th>Aksi</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for kategori_menu in kategori_menus %}                            
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{kategori_menu.nama}}</td>                                        
+                <td>
+                  {% if kategori_menu.gambar_menu %}                  
+                    <img src="{{kategori_menu.gambar_menu.url}}" alt="" srcset="" style="max-width: 4em;">                  
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td>
+                  {% if kategori_menu.gambar_text %}                  
+                    <img src="{{kategori_menu.gambar_text.url}}" alt="" srcset="" style="max-width: 4em;">                  
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>                            
+                <td>
+                  <div class="d-flex">  
+                    <span class="d-none d-lg-inline mx-1">
+                      <a href="{% url 'adminpage:kategori_menu.edit' kategori_menu.id %}" data-action="edit">
+                        <button type="button" data-rel="tooltip" data-action="edit" title="Edit" class="btn btn-outline-warning shadow-sm btn-bgc-white">
+                            <i class="fa fa-pen text-100"></i>
+                        </button>
+                      </a>
+                    </span>
+
+                    <span class="d-none d-lg-inline mx-1">
+                      <a data-action="delete" href="{% url 'adminpage:kategori_menu.delete' kategori_menu.id %}">
+                        <button type="button" data-rel="tooltip" data-action="delete" title="Delete" class="btn btn-outline-danger shadow-sm btn-bgc-white">
+                            <i class="fa fa-trash text-100"></i>
+                        </button>
+                      </a>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div><!-- /.table-responsive-md -->                    
+    </div>
+  </div>    
+
+
+{% endblock %}
+
+
+{% block extendjs %}
+
+<script>
+  $(document).ready(function () {
+      $('#datatable').DataTable();
+  });
+</script>
+
+{% endblock %}

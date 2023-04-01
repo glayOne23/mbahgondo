@@ -26,7 +26,7 @@ class LoginAksesMixin(AccessMixin):
         return super().dispatch(request, *args, **kwargs)              
     
 
-def admin(function):
+def admin_only(function):
   @wraps(function)
   def wrap(request, *args, **kwargs):        
         if request.user.is_authenticated:
@@ -66,7 +66,7 @@ class LogoutView(View):
         return redirect("adminpage:login")
 
 
-@admin
+@admin_only
 def index(request):
   context = {}
 
@@ -74,5 +74,6 @@ def index(request):
   # context['bukus'] = repo.buku.limit_revert(4)
 
   # ===[Render Template]===
-  context['page'] = 'admin'
+  context['sidebar'] = 'dasboard'
+  context['page'] = 'dashboard'
   return render(request, 'dashboard/dashboard.html', context)

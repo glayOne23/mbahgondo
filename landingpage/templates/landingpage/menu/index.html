@@ -19,23 +19,25 @@
         </div>
     </div>
 </div>
+
 <div class="h__delivery" style="z-index: 1;">
     <img src="{% static 'revo/web/images/guarenteed.png' %}" alt="" style="width: 100%;">
 </div>
+
 <div class="cards-1">
     <div class="container">
         <div class="row">
-            {% for a in menus %}            
+            {% for menu in menus %}            
                 <div class="col-lg-4 col-sm-12">
                     <!-- Card -->
-                    <a class="popup-with-move-anim" href="#details-lightbox" style="text-decoration: none;">
+                    <a class="popup-with-move-anim" href="#details-lightbox" style="text-decoration: none;" onclick="renderMenuModal('{{menu.id}}')">
                         <div class="card zoom">
                             <div class="card-image">
                                 <!-- <i class="fas fa-rocket"></i> -->
-                                <img class="" src="{% static 'revo/web/images/menu/header_1.png' %}" alt="" srcset="" style="width: 100%;">
+                                <img class="" src="{{menu.gambar.url}}" alt="" srcset="" style="width: 100%;">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Bebek Peking Mentah Siap Bumbu Frozen</h5>                        
+                                <h5 class="card-title">{{menu.nama}}</h5>                        
                             </div>
                         </div>
                     </a>
@@ -46,36 +48,13 @@
     </div> <!-- end of container -->
 </div>
        
-
-<!-- Details Lightbox -->
-<!-- Lightbox -->
-<div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
-    <div class="row">
-        <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
-        <div class="col-lg-8">
-            <div class="image-container">
-                <img class="img-fluid" src="{% static 'revo/web/images/menu/header_1.png' %}" alt="alternative">
-            </div> <!-- end of image-container -->
-        </div> <!-- end of col -->
-        <div class="col-lg-4 align-items-center ">
-            <div class="align-middle align-items-center ">
-                <h3>Bebek Peking Mentah Siap Bumbu Frozen</h3>
-                <hr>
-                <p>Bebek yang sudah dibersihkan dan dipotong dengan bumbu kaya rempah-rempah.</p>                        
-                <ul class="list-unstyled li-space-lg">
-                    <li class="media">
-                        <i class="fas fa-square"></i><div class="media-body">Rp. 60.000,00</div>
-                    </li>
-                </ul>
-                <a class="btn-solid-reg mfp-close mb-2" href="">DOWNLOAD KATALOG</a> 
-                <button class="btn-outline-reg mfp-close as-button" type="button">KEMBALI</button>
-            </div>
-        </div> <!-- end of col -->
-    </div> <!-- end of row -->
-</div> <!-- end of lightbox-basic -->
-<!-- end of lightbox -->
-<!-- end of details lightbox -->
+{% include 'landingpage/parts/menu_modal.html' %} 
 
 {% endblock content %}
+
+
+{% block javascript %}
+
+{% endblock %}
 
 

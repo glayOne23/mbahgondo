@@ -108,21 +108,13 @@
             <div class="main-runtext">
                 <marquee direction="" onmouseover="this.stop();" onmouseout="this.start();">                
                     <div class="holder">                    
-                        <div class="text-container text-uppercase">
-                            <a href="" class="runtext">
-                                <h1 style="display: inline;">Bebek peking mentah siap bumbu frozen |</h1>                                
-                            </a>
-                        </div>
-                        <div class="text-container text-uppercase">
-                            <a href="" class="runtext">
-                                <h1 style="display: inline;">Bebek peking ungkep rempah frozen |</h1>                                
-                            </a>
-                        </div>
-                        <div class="text-container text-uppercase">
-                            <a href="" class="runtext">
-                                <h1 style="display: inline;">Ayam kampung ungkep rempah frozen |</h1>                                
-                            </a>
-                        </div>
+                        {% for menu in menu_text %}                        
+                            <div class="text-container text-uppercase">
+                                <a class="popup-with-move-anim runtext" href="#details-lightbox" onclick="renderMenuModal('{{menu.id}}')">
+                                    <h1 style="display: inline;">{{menu.nama}} |</h1>
+                                </a>
+                            </div>                        
+                        {% endfor %}
                     </div>
                 
                 </marquee>
@@ -190,7 +182,7 @@
                         <div class="text-container">
                             <h2>Variasi Produk</h2>
                             <p>Kami dengan bangga mempersembahkan bebek dan ayam kampung segar yang telah diproses dengan sempurna untuk memastikan kualitas terbaik untuk pelanggan kami. </p>                            
-                            <a class="btn-solid-reg" href="{% url 'landingpage:menu'%}">LIHAT SEMUA PRODUK</a>
+                            <a class="btn-solid-reg" href="{% url 'landingpage:menu_by_kategori' 0 %}">LIHAT SEMUA PRODUK</a>
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
@@ -291,6 +283,9 @@
             </div> <!-- end of container -->
         </div> <!-- end of basic-2 -->
         <!-- end of video -->        
+
+        <!-- Modal -->
+        {% include 'landingpage/parts/menu_modal.html' %} 
 
 {% endblock content %}
 

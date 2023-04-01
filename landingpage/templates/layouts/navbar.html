@@ -23,7 +23,7 @@
                           <a class="nav-link page-scroll" href="{% url 'landingpage:beranda' %}#registration">HARGA KHUSUS</a>
                       </li>                      
                       <li class="nav-item">
-                        <a class="nav-link page-scroll {% if page == 'menu' %}active{% endif %}" href="{% url 'landingpage:menu' %}">MENU</a>
+                        <a class="nav-link page-scroll {% if page == 'menu' %}active{% endif %}" href="{% url 'landingpage:menu_by_kategori' 0 %}">MENU</a>
                     </li>                                            
                       {% comment %} <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MENU</a>
