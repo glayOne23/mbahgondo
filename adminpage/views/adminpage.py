@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import AccessMixin
 from django.contrib.auth import login, authenticate, logout #add this
 from django.contrib.auth.forms import AuthenticationForm
 # class based
+from adminpage.models import *
 from django.views import View
 from django.shortcuts import render, redirect, HttpResponse
 from django.utils import timezone
@@ -70,8 +71,10 @@ class LogoutView(View):
 def index(request):
   context = {}
 
-  # ===[Fetch Data]===      
-  # context['bukus'] = repo.buku.limit_revert(4)
+  # ===[Fetch Data]===        
+  context['peminat_count'] = len(Peminat.objects.all())
+  context['kategori_menu_count'] = len(KategoriMenu.objects.all())
+  context['menu_count'] = len(Menu.objects.all())
 
   # ===[Render Template]===
   context['sidebar'] = 'dasboard'

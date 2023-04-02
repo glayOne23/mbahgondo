@@ -6,54 +6,71 @@
 
 {% block content %} 
 
-<div class="row">
-    <!-- tabel -->
-              <!-- orders table -->
-              <div class="col-12 col-lg-12 mt-4">
-                <div class="bcard card h-100 pt-1 pt-lg-2">
+<div class="mt-3 p-3">
+  <div class="row">
+    <div class="col-md-12 col-sm-6 col-lg-4 my-1 my-lg-0 px-sm-1 px-lg-0">
+      <div class="d-flex align-items-center bgc-green-d3 py-3 rounded" role="button">
 
-                  <div class="card-header border-0">
-                    <h5 class="card-title text-dark-m2 pl-1 text-110">                                            
-                      Lokasi Cuitan <span class="text-green">fsfdsfsad</span>                        
-                    </h5>                           
-                  </div>
+        <div class="pos-rel p-3 bgc-white-tp8 radius-round ml-3 mr-3 shadow-md">
+          <i class="pos-abs mt-n2px ml-n3px fas fa-users text-dark-tp5 opacity-5 w-5 h-5 text-center pt-1 text-170"></i>
+          <i class="pos-rel fas fa-users text-white w-5 h-5 text-center pt-1 text-170"></i>
+        </div>
+
+        <div class="text-white">
+          <div>
+            <span class="text-160 text-600">{{peminat_count}}</span>                      
+          </div>
+          <div class="text-uppercase text-85 text-600 letter-spacing">
+            Total Peminat
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 
-                  <div class="card-body p-0">                    
-                    <div class="table-responsive-md">
-                      <table class="table table-border-x brc-secondary-l3 mb-0">
-                        <thead>
-                          <tr class="text-80 text-default-d3 bgc-default-l4">
-                            <th class="pl-2 pl-lg-4">Akun Twitter</th>
-                            <th>Cuitan</th>
-                            <th>Waktu Cuitan</th>
-                            <th>Link Twitter</th>
-                          </tr>
-                        </thead>
+    <div class="col-md-12 col-sm-6 col-lg-4 my-1 my-lg-0 px-sm-1 px-lg-0">
+      <div class="d-flex align-items-center bgc-orange-d3 py-3 border-l-3 brc-white-tp2 rounded" role="button">
 
-                        <tbody>
-                          {% for analitic in analitics %}                            
-                            <tr class="bgc-h-secondary-l4">
-                              <td class="pl-2 pl-lg-4">{{analitic.twitter_username}}</td>
-                              <td class="text-dark-m2 text-85">{{analitic.twitter_text}}</td>                        
-                              <td class=" text-dark-m2 text-85">{{analitic.twitter_created_at}}</td>
-                              <td class=" text-dark-m2 text-85">
-                                <a href="{{analitic.twitter_link}}" class="btn btn-sm btn-primary m-1" target="_blank">
-                                  Menuju Cuitan
-                                  <i class="fab fa-twitter"></i>
-                                </a>                                  
-                              </td>
-                            </tr>
-                          {% endfor %}
+        <div class="pos-rel p-3 bgc-white-tp8 radius-round ml-3 mr-3 shadow-md">
+          <i class="pos-abs mt-n1 ml-n1 fas fa-drumstick-bite text-dark-tp5 opacity-5 w-5 h-5 text-center pt-1 text-170"></i>
+          <i class="pos-rel fas fa-drumstick-bite text-white w-5 h-5 text-center pt-1 text-170"></i>
+        </div>
 
-                        </tbody>
-                      </table>
-                    </div><!-- /.table-responsive-md -->                    
+        <div class="text-white">
+          <div>
+            <span class="text-160 text-600">{{menu_count}}</span>                      
+          </div>
+          <div class="text-uppercase text-85 text-600 letter-spacing">
+            Total Menu
+          </div>
+        </div>
 
-                  </div><!-- /.card-body -->
-                </div>
-              </div>    
+      </div>
+    </div>
 
-</div>
+
+    <div class="col-md-12 col-sm-6 col-lg-4 my-1 my-lg-0 px-sm-1 px-lg-0">
+      <div class="d-flex align-items-center bgc-purple-d2 py-3 border-l-3 brc-white-tp2 rounded" role="button">
+
+        <div class="pos-rel p-3 bgc-white-tp8 radius-round ml-3 mr-3 shadow-md">
+          <i class="pos-abs mt-n1 fa fa-drumstick-bite text-dark-tp5 opacity-4 w-5 h-5 text-center pt-1 fa-2x"></i>
+          <i class="pos-rel fa fa-drumstick-bite text-white w-5 h-5 text-center pt-1 text-170"></i>
+        </div>
+
+        <div class="text-white">
+          <div>
+            <span class="text-160 text-600">{{kategori_menu_count}}</span>                      
+          </div>
+          <div class="text-uppercase text-85 text-600 letter-spacing">
+            Total Kategori
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>  
 
 {% endblock %}
