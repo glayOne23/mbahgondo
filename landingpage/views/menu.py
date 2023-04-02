@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseNotFound
 from django.core.serializers import serialize
 from django.shortcuts import render, redirect, HttpResponse
 from adminpage.models import *
@@ -10,13 +10,22 @@ def error_404(request, exception):
 
 def by_kategori(request, kategori_id):
   context = {}
+  context['kategori_id'] = kategori_id
 
   # ===[Fetch Data]===      
+  if kategori_id !=0:
+    try:
+      context['kategori_show'] = KategoriMenu.objects.get(id=kategori_id)
+    except KategoriMenu.DoesNotExist:
+      return HttpResponseNotFound("Kategori tidak ditemukan")
+
   if kategori_id == 0:
     context['menus'] = Menu.objects.all()
   else:    
     kategori = KategoriMenu.objects.filter(id=kategori_id)
     context['menus'] = Menu.objects.filter(kategoris__in = kategori)    
+  
+  context['kategoris'] = KategoriMenu.objects.all()
 
   # ===[Render Template]===
   context['page'] = 'menu'

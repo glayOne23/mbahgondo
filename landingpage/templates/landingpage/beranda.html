@@ -141,21 +141,38 @@
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
-
+                        {% if messages %}              
+                            {% for message in messages %}
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}                                    
+                                <div class="pl-5 pr-5">
+                                    <div role="alert" class="alert alert-success bgc-success-l4 brc-success-m3 border-2 d-flex align-items-center">
+                                        <i class="fas fa-check mr-3 fa-2x text-success"></i>
+                                        <div class="text-dark-tp2"> {{ message|safe }} </div>
+                                        <button type="button" class="close align-self-start ml-auto text-success-d2 text-150" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                         <!-- Registration Form -->
-                        <form id="registrationForm">
-                            <div class="form-group">
-                                <input type="text" class="form-control-input" id="rname" required>
-                                <label class="label-control" for="rname">Nama</label>
+                        <form id="registrationForm" method="post" action="{% url 'landingpage:beranda' %}#registration">
+                            {% csrf_token %}
+                            <div class="form-group">                                
+                                <input type="text" class="form-control-input" id="{{ form.nama.id_for_label }}" name="{{ form.nama.name }}" required>
+                                <label class="label-control" for="{{ form.nama.id_for_label }}">{{ form.nama.label_tag }}</label>
                             </div>
+                            {% if form.errors.nama %}
+                                <div style="color:red">{{form.errors.nama}}</div>                            
+                            {% endif %}
                             <div class="form-group">
-                                <input type="tel" class="form-control-input" id="rno_wa">
-                                <label class="label-control" for="rno_wa">Nomor Whatsapp (Opsional)</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control-input" id="remail">
-                                <label class="label-control" for="remail">Email (Opsional)</label>
-                            </div>
+                                <input type="tel" class="form-control-input" id="{{ form.no_wa.id_for_label }}" name="{{ form.no_wa.name }}" required>
+                                <label class="label-control" for="{{ form.no_wa.id_for_label }}">Nomor Whatsapp</label>
+                            </div>                            
+                            {% if form.errors.no_wa %}
+                                <div style="color:red">{{form.errors.no_wa}}</div>                            
+                            {% endif %}
                             <div class="form-group">
                                 <button type="submit" class="form-control-submit-button">DAPATKAN HARGA KHUSUS</button>
                             </div>
@@ -254,36 +271,9 @@
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
         </div> <!-- end of tabs -->
-        <!-- end of details 2 -->
+        <!-- end of details 2 -->    
 
-
-        <!-- Video -->
-        <div class="basic-2 bg-dark-blue mb-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="h2-heading">Tentang Kami</h2>
-                        <p class="p-heading">Kenali kami lebih dalam dengan menonton bagaimana semua proses kegiatan kami.</p>
-
-                        <!-- Video Preview -->
-                        <div class="image-container">
-                            <div class="video-wrapper">
-                                <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
-                                    <img class="img-fluid" src="{% static 'revo/web/images/video-preview.jpg' %}" alt="alternative">
-                                    <span class="video-play-button">
-                                        <span></span>
-                                    </span>
-                                </a>
-                            </div> <!-- end of video-wrapper -->
-                        </div> <!-- end of image-container -->
-                        <!-- end of video preview -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of basic-2 -->
-        <!-- end of video -->        
-
+        
         <!-- Modal -->
         {% include 'landingpage/parts/menu_modal.html' %} 
 

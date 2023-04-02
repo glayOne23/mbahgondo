@@ -1,0 +1,53 @@
+{% extends 'dashboard/layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Peminat - Ubah {% endblock %}
+
+
+{% block content %} 
+
+<div class="page-content">
+
+    <div class="page-header border-0 pb-3">
+      <h1 class="page-title text-primary-d2 text-150">
+        Peminat
+        <small class="page-info text-secondary-d2 text-nowrap">
+          <i class="fa fa-angle-double-right text-80"></i>
+          Ubah
+        </small>
+      </h1>
+        
+    </div>    
+
+    <div class="card bcard h-auto">
+      <div class="border-t-3 w-100 brc-primary-m1 radius-t-1"></div>
+      <div class="card-header">
+        <h5 class="card-title text-110 text-primary-d2 pt-1">
+          Form Ubah Peminat
+        </h5>
+      </div>      
+
+      <div class="card-body bg-white p-3">
+        <form method="post" novalidate enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </form>      
+      </div>
+    </div>
+
+  </div>    
+
+
+{% endblock %}
+
+
+{% block extendjs %}
+
+<script>
+
+</script>
+
+{% endblock %}

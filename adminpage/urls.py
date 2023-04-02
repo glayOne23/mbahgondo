@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from adminpage.views import (
     adminpage,
     menu,
-    kategori_menu
+    kategori_menu,
+    peminat
 )
 
 app_name= 'adminpage'
@@ -24,6 +25,12 @@ urlpatterns = [
             path('edit/<int:id>', kategori_menu.edit, name='kategori_menu.edit'),
             path('delete/<int:id>', kategori_menu.delete, name='kategori_menu.delete'),
         ])),            
+    ])),            
+    path('peminat/', include([        
+        path('index', peminat.index, name='peminat.index'),
+        path('add', peminat.add, name='peminat.add'),        
+        path('edit/<int:id>', peminat.edit, name='peminat.edit'),
+        path('delete/<int:id>', peminat.delete, name='peminat.delete'),
     ])),            
 ]
 

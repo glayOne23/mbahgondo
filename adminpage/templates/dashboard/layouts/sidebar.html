@@ -69,6 +69,18 @@
                 <b class="sub-arrow"></b>
               </li>
               <!-- end home -->
+
+              <!-- home -->
+              <li class="nav-item {% if sidebar == 'peminat' %} active {%endif%}">
+                <a href="{% url 'adminpage:peminat.index' %}" class="nav-link">                  
+                  <i class="nav-icon fa fa-users nav-icon-round bgc-success-tp1"></i>
+                  <span class="nav-text fadeable">
+                    <span>Peminat</span>
+                  </span>
+                </a>
+                <b class="sub-arrow"></b>
+              </li>
+              <!-- end home -->              
           
               <!-- Menu -->
               <li class="nav-item {% if sidebar == 'menu' %} active open {% endif %}">

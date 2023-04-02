@@ -6,18 +6,33 @@
 {% block content %}
 
 <div>
-    <div class="basic-1" style="z-index: 2;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12 order-sm-1 order-lg-2">
-                    <img src="{% static 'revo/web/images/menu/header_1_1.png' %}" style="width: 100%;">
+    {% if kategori_show %}
+        <div class="basic-1" style="z-index: 2;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 order-sm-1 order-lg-2">
+                        <img src="{{kategori_show.gambar_text.url}}" style="width: 100%;">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <img src="{{kategori_show.gambar_menu.url}}" style="width: 100%;">
+                    </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
-                    <img src="{% static 'revo/web/images/menu/header_1.png' %}" style="width: 100%;">
+            </div>
+        </div>    
+    {% else %}
+        <div class="basic-1" style="z-index: 2;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 order-sm-1 order-lg-2">
+                        <img src="{% static 'revo/web/images/menu/header_1_1.png' %}" style="width: 100%;">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <img src="{% static 'revo/web/images/menu/header_1.png' %}" style="width: 100%;">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 </div>
 
 <div class="h__delivery" style="z-index: 1;">
@@ -46,6 +61,17 @@
             {% endfor %}
         </div> <!-- end of row -->
     </div> <!-- end of container -->
+</div>
+
+<div class="container mb-5 text-center">        
+    <a class="kategori_menu_button mb-3" href="{% url 'landingpage:menu_by_kategori' 0 %}">
+        Semua
+    </a>    
+    {% for kategori in kategoris %}                    
+        <a class="kategori_menu_button mb-3" href="{% url 'landingpage:menu_by_kategori' kategori.id %}">
+            {{kategori.nama}}
+        </a>        
+    {% endfor %}        
 </div>
        
 {% include 'landingpage/parts/menu_modal.html' %} 
