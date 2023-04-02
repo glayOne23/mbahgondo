@@ -30,3 +30,11 @@ def beranda(request):
   # ===[Render Template]===
   context['page'] = 'beranda'
   return render(request, 'landingpage/beranda.html', context)
+
+
+def about(request):
+  context = {}
+
+  # ===[Render Template]===
+  context['page'] = 'about'
+  return render(request, 'landingpage/about.html', context)

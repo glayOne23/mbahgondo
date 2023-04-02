@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Tentang Kami{% endblock title %}
+
+{% block content %}
+
+<!-- Header -->
+<header class="ex-header bg-dark-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 offset-xl-1">
+                <h1>Tentang Mbah Gondo</h1>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</header> <!-- end of ex-header -->
+<!-- end of header -->
+
+<div class="ex-basic-1 pt-5 pb-5 bg-dark-blue">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 align-self-center mt-3">
+                <img class="img-fluid" src="{% static '/images/menu/b_u_m1.jpeg' %}" alt="alternative">
+            </div>
+            <div class="col-md-6 col-sm-12 align-self-center mt-3">
+                <p class="p-about">
+                    Perusahaan Mbah Gondo didirikan pada tahun 2018 oleh Taufik Immawan di Serengan, Solo. Pada awal berdirinya hanya berfokus pada peternakan bebek peking. 
+                </p>
+                <p class="p-about">
+                    Namun, seiring berjalannya waktu dan permintaan pasar yang terus meningkat, Mbah Gondo mulai mengembangkan seluruh proses dari pengadaan pakan, peternakan, serta proses memasakan dan packing untuk frozen.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 align-self-center mt-3 order-sm-1 order-lg-2">
+                <img class="img-fluid" src="{% static '/images/menu/b_b_m1.jpeg' %}" alt="alternative">
+            </div>
+            <div class="col-md-6 col-sm-12 align-self-center mt-3">
+                <p class="p-about">
+                    Tidak hanya bebek peking, Mbah Gondo juga mulai memperluas bisnisnya ke peternakan Ayam Kampung. Hal ini dilakukan karena permintaan ayam kampung yang semakin meningkat. Untuk menghasilkan produk yang berkualitas, perusahaan Mbah Gondo mengadopsi sistem integrasi usaha peternakan.         
+                </p>
+                <p class="p-about">
+                    Sistem integrasi usaha peternakan mengendalikan seluruh proses dari pengadaan pakan ternak, peternakan, pemotongan, dan packing dalam satu sistem. Dengan sistem ini, perusahaan Mbah Gondo mampu menjamin kebersihan dan keamanan produk-produknya.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 col-sm-12 align-self-center mt-3">
+                <img class="img-fluid" src="{% static '/images/menu/b_u_r3.jpeg' %}" alt="alternative">
+            </div>
+            <div class="col-md-6 col-sm-12 align-self-center mt-3">
+                <p class="p-about">
+                    Dari sinilah, perusahaan Mbah Gondo semakin terkenal dan memulai masuk ke era digital. Hingga saat ini, perusahaan Mbah Gondo terus mengembangkan bisnisnya dengan menjalin kerja sama dengan mitra terpercaya baik di dalam maupun luar negeri.
+                </p>
+            </div>    
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
