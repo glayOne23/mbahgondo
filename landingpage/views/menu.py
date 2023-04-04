@@ -11,6 +11,7 @@ def error_404(request, exception):
 def by_kategori(request, kategori_id):
   context = {}
   context['kategori_id'] = kategori_id
+  context['katalog_biasa'] = Katalog.objects.filter(tipe="biasa").first().file.url if len(Katalog.objects.filter(tipe="biasa")) == 1 else None  
 
   # ===[Fetch Data]===      
   if kategori_id !=0:

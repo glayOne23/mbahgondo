@@ -1,0 +1,44 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Berita{% endblock title %}
+
+{% block content %}
+
+<!-- Header -->
+<header class="ex-header bg-dark-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 offset-xl-1">
+                <h1>Berita dan Promo</h1>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</header> <!-- end of ex-header -->
+<!-- end of header -->
+
+<div class="ex-basic-1 pt-5 pb-5 bg-dark-blue">
+
+    <div class="container">
+
+        {% for berita in beritas %}        
+            <div class="row">
+                <div class="col-md-6 col-sm-12 align-self-center mt-3 {% if forloop.counter|divisibleby:2 %}order-sm-1 order-lg-2{% else %}{% endif %}">
+                    <img class="img-fluid" src="{{berita.gambar.url}}" alt="alternative">
+                </div>
+                <div class="col-md-6 col-sm-12 align-self-center mt-3">
+                    <h3>{{berita.judul}}</h3>
+                    <p class="p-about">
+                        {{berita.konten|truncatechars:150}}
+                    </p>
+                    <a class="btn-solid-reg" href="{% url 'landingpage:berita.show' berita.id berita.slug %}">
+                        Lihat Selengkapnya
+                    </a>    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock content %}

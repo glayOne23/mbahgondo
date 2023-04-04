@@ -130,6 +130,17 @@
                 <b class="sub-arrow"></b>
               </li>                              
 
+              <!-- berita -->
+              <li class="nav-item {% if sidebar == 'berita' %} active {%endif%}">
+                <a href="{% url 'adminpage:berita.index' %}" class="nav-link">                  
+                  <i class="nav-icon fa fa-newspaper nav-icon-round bgc-info-tp1"></i>
+                  <span class="nav-text fadeable">
+                    <span>Berita</span>
+                  </span>
+                </a>
+                <b class="sub-arrow"></b>
+              </li>
+              <!-- end berita -->               
               
             </ul>
           </nav>

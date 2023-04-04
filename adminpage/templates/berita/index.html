@@ -1,7 +1,7 @@
 {% extends 'dashboard/layouts/base.html' %}
 {% load static %}
 
-{% block title %} Katalog {% endblock %}
+{% block title %} Berita {% endblock %}
 
 
 {% block content %} 
@@ -10,7 +10,7 @@
 
     <div class="page-header border-0 pb-3">
       <h1 class="page-title text-primary-d2 text-150">
-        Katalog
+        Berita
         <small class="page-info text-secondary-d2 text-nowrap">
           <i class="fa fa-angle-double-right text-80"></i>
           Tabel
@@ -23,8 +23,8 @@
       
       <!-- Header Table -->
       <div class="d-flex justify-content-end flex-column flex-sm-row px-2 px-sm-0 m-2">                                
-        <a type="button" class="btn btn-blue px-3 radius-round border-2 brc-black-tp10" href="{% url 'adminpage:katalog.add' %}">
-            <i class="fa fa-plus-circle"></i> Tambah katalog
+        <a type="button" class="btn btn-blue px-3 radius-round border-2 brc-black-tp10" href="{% url 'adminpage:berita.add' %}">
+            <i class="fa fa-plus-circle"></i> Tambah berita
         </a>                    
       </div>
 
@@ -34,24 +34,30 @@
           <thead class="sticky-nav text-secondary-m1 text-uppercase text-85">
             <tr>
               <th class="pl-2 pl-lg-4">No</th>
-              <th>Tipe</th>              
-              <th>Pdf</th>
+              <th>Judul</th>
+              <th>Gambar</th>
+              <th>Tampilkan pada Header</th>
               <th>Aksi</th>
             </tr>
           </thead>
 
           <tbody>
-            {% for katalog in katalogs %}                            
+            {% for berita in beritas %}                            
               <tr>
                 <td>{{ forloop.counter }}</td>
-                <td>{{katalog.tipe}}</td>                                        
+                <td>{{berita.judul}}</td>                                        
                 <td>
-                  <a href="{{katalog.file.url}}" target="_blank">Lihat PDF</a>                              
+                  {% if berita.gambar %}                  
+                    <img src="{{berita.gambar.url}}" alt="" srcset="" style="max-width: 4em;">                  
+                  {% else %}
+                    -
+                  {% endif %}
                 </td>
+                <td>{{berita.show_header}}</td>
                 <td>
                   <div class="d-flex">  
                     <span class="d-none d-lg-inline mx-1">
-                      <a href="{% url 'adminpage:katalog.edit' katalog.id %}" data-action="edit">
+                      <a href="{% url 'adminpage:berita.edit' berita.id %}" data-action="edit">
                         <button type="button" data-rel="tooltip" data-action="edit" title="Edit" class="btn btn-outline-warning shadow-sm btn-bgc-white">
                             <i class="fa fa-pen text-100"></i>
                         </button>
@@ -59,7 +65,7 @@
                     </span>
 
                     <span class="d-none d-lg-inline mx-1">
-                      <a data-action="delete" href="{% url 'adminpage:katalog.delete' katalog.id %}">
+                      <a data-action="delete" href="{% url 'adminpage:berita.delete' berita.id %}">
                         <button type="button" data-rel="tooltip" data-action="delete" title="Delete" class="btn btn-outline-danger shadow-sm btn-bgc-white">
                             <i class="fa fa-trash text-100"></i>
                         </button>

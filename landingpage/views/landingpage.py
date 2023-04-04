@@ -14,6 +14,7 @@ def beranda(request):
 
   # ===[Fetch Data]===      
   context['menu_text'] = Menu.objects.values('id', 'nama')  
+  context['beritas'] = Berita.objects.filter(show_header=True)
   context['katalog_biasa'] = Katalog.objects.filter(tipe="biasa").first().file.url if len(Katalog.objects.filter(tipe="biasa")) == 1 else None  
   context['katalog_khusus'] = Katalog.objects.filter(tipe="khusus").first().file.url if len(Katalog.objects.filter(tipe="khusus")) == 1 else None
 

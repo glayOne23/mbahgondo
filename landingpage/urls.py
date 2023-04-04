@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 
 from landingpage.views import (
     landingpage,  
-    menu  
+    menu,
+    berita  
 )
 
 app_name= 'landingpage'
@@ -18,5 +19,9 @@ urlpatterns = [
         path('<int:id>/json', menu.json, name='menu.json'),
     ])),
     path('tentang-kami', landingpage.about, name='about'),    
+    path('berita/', include([        
+        path('', berita.index, name='berita.index'),
+        path('<int:id>/<str:slug>', berita.show, name='berita.show'),
+    ])),
 ]
 

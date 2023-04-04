@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Berita{% endblock title %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="ex-header">    
+</div> <!-- end of ex-header -->
+<!-- end of header -->
+
+<div class="ex-basic-1 pt-5 pb-5 bg-dark-blue">
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-12 align-self-center mt-3">
+                <h1 class="mb-5 text-center">{{berita.judul}}</h1>
+                <img class="img-fluid mb-5" src="{{berita.gambar.url}}" alt="alternative">
+                <p class="p-about">
+                    {{berita.konten}}
+                </p>                
+            </div>            
+        </div>        
+    </div>
+
+</div>
+
+{% endblock content %}

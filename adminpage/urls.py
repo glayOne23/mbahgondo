@@ -6,7 +6,8 @@ from adminpage.views import (
     katalog,
     menu,
     kategori_menu,
-    peminat
+    peminat,
+    berita
 )
 
 app_name= 'adminpage'
@@ -38,6 +39,12 @@ urlpatterns = [
         path('add', katalog.add, name='katalog.add'),        
         path('edit/<int:id>', katalog.edit, name='katalog.edit'),
         path('delete/<int:id>', katalog.delete, name='katalog.delete'),
+    ])),    
+    path('berita/', include([        
+        path('index', berita.index, name='berita.index'),
+        path('add', berita.add, name='berita.add'),        
+        path('edit/<int:id>', berita.edit, name='berita.edit'),
+        path('delete/<int:id>', berita.delete, name='berita.delete'),
     ])),    
 ]
 

@@ -15,6 +15,36 @@
                         <div class="slider-container">
                             <div class="swiper-container text-slider">
                                 <div class="swiper-wrapper">
+
+                                    {% for berita in beritas %}
+
+                                        <!-- Slide -->
+                                        <div class="swiper-slide">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xl-7">
+                                                    <div class="image-container">
+                                                        <a href="{% if berita.menuju_ke %} {{berita.menuju_ke}} {% else %}{% endif %}" target="_blank">
+                                                            <img class="img-fluid" src="{{berita.gambar.url}}" alt="alternative">
+                                                        </a>
+                                                    </div> <!-- end of image-container -->
+                                                </div> <!-- end of col -->
+                                                <div class="col-lg-6 col-xl-5">
+                                                    <div class="text-container">
+                                                        <a href="{% if berita.menuju_ke %} {{berita.menuju_ke}} {% else %}{% endif %}" target="_blank" style="text-decoration:none">
+                                                            <h1 class="h1-large">{{berita.judul|truncatechars:30 }}</h1>
+                                                        </a>
+                                                        <p class="p-large"> 
+                                                            {{berita.konten|truncatechars:100 }}
+                                                        </p>
+                                                        <a class="btn-solid-lg page-scroll" href="#registration">HARGA KHUSUS</a>
+                                                        <a class="btn-outline-lg" href="{{katalog_biasa}}" target="_blank">DOWNLOAD KATALOG</a>
+                                                    </div> <!-- end of text-container -->
+                                                </div> <!-- end of col -->
+                                            </div> <!-- end of row -->
+                                        </div> <!-- end of swiper-slide -->
+                                        <!-- end of slide -->                                    
+                                    
+                                    {% endfor %}
                                     
                                     <!-- Slide -->
                                     <div class="swiper-slide">
@@ -159,8 +189,8 @@
                                     <i class="fa fa-solid fa-arrow-circle-left fa-beat"></i>
                                 </div>
                                 {% endif %}
-                                {% endfor %}
-                                {% endif %}                                
+                            {% endfor %}
+                        {% endif %}                                
                         <!-- Registration Form -->
                         <form id="registrationForm" method="post" action="{% url 'landingpage:beranda' %}#registration">
                             {% csrf_token %}

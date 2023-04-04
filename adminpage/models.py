@@ -1,5 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -7,6 +8,7 @@ TIPE_KATALOG = (
     ('biasa', 'biasa'),
     ('khusus', 'khusus'),
 )
+
 
 class KategoriMenu(models.Model):    
     nama = models.CharField(max_length=255)    
@@ -50,3 +52,23 @@ class Katalog(models.Model):
 
     def __str__(self):
         return self.tipe
+    
+
+class Berita(models.Model):
+    judul = models.CharField(max_length=255)
+    gambar = models.FileField(upload_to='berita/')
+    menuju_ke = models.URLField(max_length=255, blank=True, null=True)
+    konten = models.TextField()
+    show_header = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=255, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return self.judul
+    
+    def save(self, *args, **kwargs):  # new
+        if not self.slug:
+            self.slug = slugify(self.judul)
+        return super().save(*args, **kwargs)    
+

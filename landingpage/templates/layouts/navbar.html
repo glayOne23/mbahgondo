@@ -28,6 +28,9 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll {% if page == 'about' %}active{% endif %}" href="{% url 'landingpage:about' %}">TENTANG KAMI</a>
                     </li>                      
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll {% if page == 'berita' %}active{% endif %}" href="{% url 'landingpage:berita.index' %}">BERITA & PROMO</a>
+                    </li>                                          
                       {% comment %} <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MENU</a>
                           <div class="dropdown-menu" aria-labelledby="dropdown01">
