@@ -3,6 +3,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
+TIPE_KATALOG = (
+    ('biasa', 'biasa'),
+    ('khusus', 'khusus'),
+)
 
 class KategoriMenu(models.Model):    
     nama = models.CharField(max_length=255)    
@@ -36,3 +40,13 @@ class Peminat(models.Model):
 
     def __str__(self):
         return self.nama    
+    
+
+class Katalog(models.Model):
+    tipe = models.CharField(choices=TIPE_KATALOG, max_length=255, unique=True)
+    file = models.FileField(upload_to='katalog/')
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return self.tipe

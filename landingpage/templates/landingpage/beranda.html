@@ -34,7 +34,7 @@
                                                         <i class="fa fa-solid fa-arrow-circle-down fa-beat"></i>
                                                     </p>
                                                     <a class="btn-solid-lg page-scroll" href="#registration">HARGA KHUSUS</a>
-                                                    <a class="btn-outline-lg" href="">DOWNLOAD KATALOG</a>
+                                                    <a class="btn-outline-lg" href="{{katalog_biasa}}" target="_blank">DOWNLOAD KATALOG</a>
                                                 </div> <!-- end of text-container -->
                                             </div> <!-- end of col -->
                                         </div> <!-- end of row -->
@@ -54,7 +54,7 @@
                                                     <h1 class="h1-large">Kualitas Terjamin</h1>
                                                     <p class="p-large">Daging bebek dan ayam dipotong dengan hati-hati dan dibekukan segera untuk menjaga <b>kesegaran</b> dan <b>rasa alami</b> yang tahan lama.</p>
                                                     <a class="btn-solid-lg page-scroll" href="#registration">HARGA KHUSUS</a>
-                                                    <a class="btn-outline-lg" href="">DOWNLOAD KATALOG</a>
+                                                    <a class="btn-outline-lg" href="{{katalog_biasa}}" target="_blank">DOWNLOAD KATALOG</a>
                                                 </div> <!-- end of text-container -->
                                             </div> <!-- end of col -->
                                         </div> <!-- end of row -->
@@ -78,7 +78,7 @@
                                                         <i class="fa fa-solid fa-arrow-circle-down fa-beat"></i>
                                                     </p>
                                                     <a class="btn-solid-lg page-scroll" href="#registration">HARGA KHUSUS</a>
-                                                    <a class="btn-outline-lg" href="">DOWNLOAD KATALOG</a>
+                                                    <a class="btn-outline-lg" href="{{katalog_biasa}}" target="_blank">DOWNLOAD KATALOG</a>
                                                 </div> <!-- end of text-container -->
                                             </div> <!-- end of col -->
                                         </div> <!-- end of row -->
@@ -153,9 +153,14 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div class="text-center mb-3">
+                                    <i class="fa fa-solid fa-arrow-circle-right fa-beat"></i>
+                                    <a class="btn-solid-reg" href="{{katalog_khusus}}" target="_blank">DOWNLOAD KATALOG HARGA KHUSUS</a>
+                                    <i class="fa fa-solid fa-arrow-circle-left fa-beat"></i>
+                                </div>
                                 {% endif %}
-                            {% endfor %}
-                        {% endif %}
+                                {% endfor %}
+                                {% endif %}                                
                         <!-- Registration Form -->
                         <form id="registrationForm" method="post" action="{% url 'landingpage:beranda' %}#registration">
                             {% csrf_token %}
@@ -175,7 +180,7 @@
                             {% endif %}
                             <div class="form-group">
                                 <button type="submit" class="form-control-submit-button">DAPATKAN HARGA KHUSUS</button>
-                            </div>
+                            </div>                            
                         </form>
                         <!-- end of registration form -->
 

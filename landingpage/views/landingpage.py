@@ -14,6 +14,8 @@ def beranda(request):
 
   # ===[Fetch Data]===      
   context['menu_text'] = Menu.objects.values('id', 'nama')  
+  context['katalog_biasa'] = Katalog.objects.filter(tipe="biasa").first().file.url if len(Katalog.objects.filter(tipe="biasa")) == 1 else None  
+  context['katalog_khusus'] = Katalog.objects.filter(tipe="khusus").first().file.url if len(Katalog.objects.filter(tipe="khusus")) == 1 else None
 
   # ===[Load Form]===
   context['form'] = FormPeminat(request.POST or None, request.FILES or None)
@@ -22,7 +24,7 @@ def beranda(request):
   if request.POST:
     if context['form'].is_valid():  
       context['form'].save()
-      messages.success(request, 'Selamat! Mohon check pesan whatsapp anda untuk melihat harga khusus')      
+      messages.success(request, 'Selamat! Anda dapat mendownload harga khusus')            
       return redirect(reverse('landingpage:beranda')+"#registration")        
     else:
       print(context['form'].errors)      

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from adminpage.views import (
     adminpage,
+    katalog,
     menu,
     kategori_menu,
     peminat
@@ -32,5 +33,11 @@ urlpatterns = [
         path('edit/<int:id>', peminat.edit, name='peminat.edit'),
         path('delete/<int:id>', peminat.delete, name='peminat.delete'),
     ])),            
+    path('katalog/', include([        
+        path('index', katalog.index, name='katalog.index'),
+        path('add', katalog.add, name='katalog.add'),        
+        path('edit/<int:id>', katalog.edit, name='katalog.edit'),
+        path('delete/<int:id>', katalog.delete, name='katalog.delete'),
+    ])),    
 ]
 

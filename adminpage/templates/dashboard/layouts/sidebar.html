@@ -70,6 +70,18 @@
               </li>
               <!-- end home -->
 
+              <!-- katalog -->
+              <li class="nav-item {% if sidebar == 'katalog' %} active {%endif%}">
+                <a href="{% url 'adminpage:katalog.index' %}" class="nav-link">                  
+                  <i class="nav-icon fa fa-book nav-icon-round bgc-danger-tp1"></i>
+                  <span class="nav-text fadeable">
+                    <span>Katalog</span>
+                  </span>
+                </a>
+                <b class="sub-arrow"></b>
+              </li>
+              <!-- end katalog -->                            
+
               <!-- home -->
               <li class="nav-item {% if sidebar == 'peminat' %} active {%endif%}">
                 <a href="{% url 'adminpage:peminat.index' %}" class="nav-link">                  
