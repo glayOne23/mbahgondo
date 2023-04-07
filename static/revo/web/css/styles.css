@@ -1174,7 +1174,7 @@ input[type='checkbox'] {
 .footer {
 	padding-top: 6rem;
 	padding-bottom: 2rem;
-	border-top: 1px solid #3c3758;
+	/* border-top: 1px solid #3c3758; */
 	background-color: #493B36;
 }
 
@@ -1983,4 +1983,13 @@ a:hover.back-to-top {
 
 .p-about{
 	font-family: "Nunito", sans-serif;
+}
+
+.footer-top{
+	background: url('../images/footer-top.png'); 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;			
+	height: 6em;
 }
