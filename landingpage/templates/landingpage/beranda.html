@@ -162,7 +162,7 @@
                             <p>Kami memahami bahwa harga menjadi salah satu faktor penting dalam memilih produk makanan. Oleh karena itu, kami memberikan harga yang bersaing tanpa mengorbankan kualitas produk kami. Dengan harga khusus, anda dapat:</p>
                             <ul class="list-unstyled li-space-lg">
                                 <li class="media">
-                                    <i class="fas fa-square"></i><div class="media-body"><strong>Diskon Harga</strong> untuk pembelian dalam jumlah banyak</div>
+                                    <i class="fas fa-square"></i><div class="media-body"><strong>Diskon Harga</strong> untuk pembelian dalam jumlah tertentu</div>
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-square"></i><div class="media-body"><strong>Gratis Pengiriman</strong> untuk wilayah Surakarta dan sekitarnya</div>
@@ -195,19 +195,37 @@
                         <form id="registrationForm" method="post" action="{% url 'landingpage:beranda' %}#registration">
                             {% csrf_token %}
                             <div class="form-group">                                
-                                <input type="text" class="form-control-input" id="{{ form.nama.id_for_label }}" name="{{ form.nama.name }}" required>
+                                <input type="text" class="form-control-input" id="{{ form.nama.id_for_label }}" name="{{ form.nama.name }}" value="{% if form.nama.value %}{{ form.nama.value }}{% endif %}" required>
                                 <label class="label-control" for="{{ form.nama.id_for_label }}">{{ form.nama.label_tag }}</label>
                             </div>
                             {% if form.errors.nama %}
                                 <div style="color:red">{{form.errors.nama}}</div>                            
                             {% endif %}
                             <div class="form-group">
-                                <input type="tel" class="form-control-input" id="{{ form.no_wa.id_for_label }}" name="{{ form.no_wa.name }}" required>
-                                <label class="label-control" for="{{ form.no_wa.id_for_label }}">Nomor Whatsapp: (Contoh +628123223232)</label>
+                                <input type="tel" class="form-control-input" id="{{ form.no_wa.id_for_label }}" name="{{ form.no_wa.name }}" value="{% if form.no_wa.value %}{{ form.no_wa.value }}{% endif %}" required>
+                                <label class="label-control" for="{{ form.no_wa.id_for_label }}">{{ form.no_wa.label_tag }}</label>
                             </div>                            
                             {% if form.errors.no_wa %}
                                 <div style="color:red">{{form.errors.no_wa}}</div>                            
                             {% endif %}
+                            <div class="form-group">                                
+                                <input type="text" class="form-control-input" id="{{ form.alamat.id_for_label }}" name="{{ form.alamat.name }}" value="{% if form.alamat.value %}{{ form.alamat.value }}{% endif %}" required>
+                                <label class="label-control" for="{{ form.alamat.id_for_label }}">{{ form.alamat.label_tag }}</label>
+                            </div>
+                            {% if form.errors.alamat %}
+                                <div style="color:red">{{form.errors.alamat}}</div>                            
+                            {% endif %}                                   
+                            <div class="form-group">
+                                <select name="{{ form.cara_menemukan.name }}" class="form-control-input" id="{{ form.cara_menemukan.id_for_label }}" required>
+                                    {% for data in form.fields.cara_menemukan.choices %}
+                                        <option value="{{data.0}}" {% if form.cara_menemukan.value|stringformat:'s' == data.0|stringformat:'s' %}SELECTED{% endif %}> {{data.1|capfirst}}</option>
+                                    {% endfor %}                    
+                                </select>                                
+                                <label class="label-control" for="{{ form.cara_menemukan.id_for_label }}">{{ form.cara_menemukan.label_tag }}</label>
+                            </div>                            
+                            {% if form.errors.cara_menemukan %}
+                                <div style="color:red">{{form.errors.cara_menemukan}}</div>                            
+                            {% endif %}                            
                             <div class="form-group">
                                 <button type="submit" class="form-control-submit-button">DAPATKAN HARGA KHUSUS</button>
                             </div>                            

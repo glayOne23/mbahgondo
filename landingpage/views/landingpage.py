@@ -27,7 +27,7 @@ def beranda(request):
       context['form'].save()
       messages.success(request, 'Selamat! Anda dapat mendownload harga khusus')            
       return redirect(reverse('landingpage:beranda')+"#registration")        
-    else:
+    else:      
       print(context['form'].errors)      
 
   # ===[Render Template]===

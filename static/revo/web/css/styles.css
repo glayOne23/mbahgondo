@@ -260,8 +260,10 @@ a.white:hover {
 	transition: all 0.2s ease;
 }
 
+.form-control-input:not([value=""]) + .label-control,
 .form-control-input:focus + .label-control,
 .form-control-input.notEmpty + .label-control,
+.form-control-textarea:not([value=""]) + .label-control,
 .form-control-textarea:focus + .label-control,
 .form-control-textarea.notEmpty + .label-control {
 	top: 0.125rem;
