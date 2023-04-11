@@ -9,6 +9,11 @@ TIPE_KATALOG = (
     ('khusus', 'khusus'),
 )
 
+WAKTU_KEBUTUHAN = (
+    ('hari', 'Per Hari'),
+    ('minggu', 'Per Minggu'),
+)
+
 
 class KategoriMenu(models.Model):    
     nama = models.CharField(max_length=255)    
@@ -36,23 +41,37 @@ class Menu(models.Model):
 
 class PeminatCaraMenemukan(models.Model):
     nama = models.CharField(max_length=255)
+    has_isian = models.BooleanField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return self.nama     
+        return self.nama
 
 
 class Peminat(models.Model):
     nama = models.CharField(max_length=255)
     no_wa = PhoneNumberField(unique=True)
     alamat = models.TextField()
-    cara_menemukan = models.ForeignKey(PeminatCaraMenemukan, on_delete=models.SET_NULL, blank=True, null=True)
+    jumlah_kebutuhan = models.IntegerField()
+    waktu_kebutuhan = models.CharField(max_length=255, choices=WAKTU_KEBUTUHAN)
+    cara_menemukan = models.ForeignKey(PeminatCaraMenemukan, on_delete=models.SET_NULL, blank=True, null=True)    
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.nama    
+    
+
+class IsianPeminatCaraMenemukan(models.Model):
+    isian = models.CharField(max_length=255)
+    cara_menemukan = models.ForeignKey(PeminatCaraMenemukan, on_delete=models.CASCADE)
+    peminat = models.ForeignKey(Peminat, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return self.isian        
     
 
 class Katalog(models.Model):

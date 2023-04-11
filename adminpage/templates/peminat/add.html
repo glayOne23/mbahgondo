@@ -32,7 +32,12 @@
       <div class="card-body bg-white p-3">
         <form method="post" novalidate enctype="multipart/form-data">
           {% csrf_token %}
+          
           {{ form|crispy }}
+
+          <!-- isian -->
+          {{ formisian|crispy }}
+          
           <button type="submit" class="btn btn-success">Simpan</button>
         </form>      
       </div>
@@ -47,7 +52,26 @@
 {% block extendjs %}
 
 <script>
+  show_isian = "{{show_isian}}"
+  if (show_isian != "") {    
+    document.getElementById('div_id_isian').classList.add(show_isian)
+  }
 
+  cara_menemukans = JSON.parse("{{ peminat_cara_menemukan_json|escapejs }}");
+  console.log(cara_menemukans);
+  function showIsian(value) {  
+      console.log(value);              
+      cara_menemukans.forEach(element => {
+          if (element.id == value) {
+              if (element.has_isian) {                        
+                  document.getElementById('div_id_isian').classList.remove('d-none')
+              }
+              else{
+                  document.getElementById('div_id_isian').classList.add('d-none')
+              }
+          }
+      });
+  }
 </script>
 
 {% endblock %}

@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.utils import timezone
@@ -22,20 +23,38 @@ def index(request):
 @admin_only
 def add(request):
   context = {}    
-  # ===[Fetch Data]===    
 
   # ===[Load Form]===
   context['form'] = FormPeminat(request.POST or None, request.FILES or None)
+  context['form'].fields['cara_menemukan'].widget.attrs["onchange"]="showIsian(value)"
+  context['formisian'] = FormIsianPeminatCaraMenemukan(request.POST or None, request.FILES or None)  
 
-  if request.POST:        
-    if context['form'].is_valid():  
-      context['form'].save()
-      messages.success(request, 'Data berhasil ditambahkan!')
-      return redirect('adminpage:peminat.index')        
-    # else:
-    #   messages.error(request, context['form'].errors)
-    #   return redirect('adminpage:peminat.add')
+  # ===[Fetch Data]===    
+  context['peminat_cara_menemukan_json'] = json.dumps(list(PeminatCaraMenemukan.objects.all().values()), indent=4, sort_keys=True, default=str)  
+  context['show_isian'] = 'd-none'
 
+  isian_cara_menemukan = context['form']['cara_menemukan'].value()
+  if isian_cara_menemukan:
+    if PeminatCaraMenemukan.objects.get(id = isian_cara_menemukan).has_isian:   
+      context['show_isian'] = ''  
+  
+  if request.POST:
+      if context['show_isian'] == '':
+        if context['form'].is_valid():  
+          peminat = context['form'].save(commit=False)                             
+          if context['formisian'].is_valid():
+            isian = context['formisian'].save(commit=False)                      
+            isian.peminat = peminat
+            isian.cara_menemukan = peminat.cara_menemukan
+            peminat.save()
+            isian.save() 
+            messages.success(request, 'Data berhasil ditambahkan!')
+            return redirect('adminpage:peminat.index')            
+      else:    
+        if context['form'].is_valid():        
+            peminat = context['form'].save()        
+            messages.success(request, 'Data berhasil ditambahkan!')
+            return redirect('adminpage:peminat.index')                
 
   # ===[Render Template]===
   context['sidebar'] = 'peminat'
@@ -49,19 +68,39 @@ def edit(request, id):
 
     # ===[Check ID IsValid]===
     try:
-        getperiode = Peminat.objects.get(id=id)
+        getpeminat = Peminat.objects.get(id=id)
     except Peminat.DoesNotExist:
         messages.error(request, 'Data tidak ditemukan!')
         return redirect('adminpage:peminat.index')    
+    
+    # ===[Fetch Data]===    
+    context['peminat_cara_menemukan_json'] = json.dumps(list(PeminatCaraMenemukan.objects.all().values()), indent=4, sort_keys=True, default=str)  
+    context['show_isian'] = 'd-none'    
 
     # ===[Load Form]===
-    context['form'] = FormPeminat(request.POST or None, request.FILES or None, instance=getperiode)    
+    context['form'] = FormPeminat(request.POST or None, request.FILES or None, instance=getpeminat)    
+    context['form'].fields['cara_menemukan'].widget.attrs["onchange"]="showIsian(value)"
+    try:
+        getisian = IsianPeminatCaraMenemukan.objects.get(peminat=getpeminat)        
+        context['formisian'] = FormIsianPeminatCaraMenemukan(request.POST or None, request.FILES or None, instance=getisian)
+    except IsianPeminatCaraMenemukan.DoesNotExist:        
+        context['formisian'] = FormIsianPeminatCaraMenemukan(request.POST or None, request.FILES or None)
+
+    isian_cara_menemukan = context['form']['cara_menemukan'].value()    
+    if isian_cara_menemukan:
+      if PeminatCaraMenemukan.objects.get(id = isian_cara_menemukan).has_isian:   
+        context['show_isian'] = ''        
 
     # ===[Editt Logic]===
-    if request.POST:
-        
+    if request.POST:        
         if context['form'].is_valid():                            
-            context['form'].save()            
+          peminat = context['form'].save(commit=False)                             
+          if context['formisian'].is_valid():            
+            isian = context['formisian'].save(commit=False)                                  
+            isian.peminat = peminat
+            isian.cara_menemukan = peminat.cara_menemukan
+            peminat.save()
+            isian.save()   
             messages.success(request, 'Data berhasil diupdate')
             return redirect('adminpage:peminat.index')            
         else:

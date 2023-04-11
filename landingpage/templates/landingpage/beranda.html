@@ -194,6 +194,7 @@
                         <!-- Registration Form -->
                         <form id="registrationForm" method="post" action="{% url 'landingpage:beranda' %}#registration">
                             {% csrf_token %}
+                            <!-- nama -->
                             <div class="form-group">                                
                                 <input type="text" class="form-control-input" id="{{ form.nama.id_for_label }}" name="{{ form.nama.name }}" value="{% if form.nama.value %}{{ form.nama.value }}{% endif %}" required>
                                 <label class="label-control" for="{{ form.nama.id_for_label }}">{{ form.nama.label_tag }}</label>
@@ -201,6 +202,7 @@
                             {% if form.errors.nama %}
                                 <div style="color:red">{{form.errors.nama}}</div>                            
                             {% endif %}
+                            <!-- nomor Wa -->
                             <div class="form-group">
                                 <input type="tel" class="form-control-input" id="{{ form.no_wa.id_for_label }}" name="{{ form.no_wa.name }}" value="{% if form.no_wa.value %}{{ form.no_wa.value }}{% endif %}" required>
                                 <label class="label-control" for="{{ form.no_wa.id_for_label }}">{{ form.no_wa.label_tag }}</label>
@@ -208,24 +210,62 @@
                             {% if form.errors.no_wa %}
                                 <div style="color:red">{{form.errors.no_wa}}</div>                            
                             {% endif %}
+                            <!-- Alamat -->
                             <div class="form-group">                                
                                 <input type="text" class="form-control-input" id="{{ form.alamat.id_for_label }}" name="{{ form.alamat.name }}" value="{% if form.alamat.value %}{{ form.alamat.value }}{% endif %}" required>
                                 <label class="label-control" for="{{ form.alamat.id_for_label }}">{{ form.alamat.label_tag }}</label>
                             </div>
                             {% if form.errors.alamat %}
                                 <div style="color:red">{{form.errors.alamat}}</div>                            
-                            {% endif %}                                   
+                            {% endif %}                            
+                            <!-- Jumlah Kebutuhan -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">                                
+                                        <input type="integer" class="form-control-input" id="{{ form.jumlah_kebutuhan.id_for_label }}" name="{{ form.jumlah_kebutuhan.name }}" value="{% if form.jumlah_kebutuhan.value %}{{ form.jumlah_kebutuhan.value }}{% endif %}" required>
+                                        <label class="label-control" for="{{ form.jumlah_kebutuhan.id_for_label }}">{{ form.jumlah_kebutuhan.label_tag }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <select name="{{ form.waktu_kebutuhan.name }}" class="form-control-input" id="{{ form.waktu_kebutuhan.id_for_label }}" required>
+                                            {% for data in form.fields.waktu_kebutuhan.choices %}
+                                                <option value="{{data.0}}" {% if form.waktu_kebutuhan.value|stringformat:'s' == data.0|stringformat:'s' %}SELECTED{% endif %}> {{data.1|capfirst}}</option>
+                                            {% endfor %}                    
+                                        </select>                                
+                                        <label class="label-control" for="{{ form.waktu_kebutuhan.id_for_label }}">{{ form.waktu_kebutuhan.label_tag }}</label>
+                                    </div>                            
+                                </div>
+                            </div>
+                            {% if form.errors.jumlah_kebutuhan %}
+                                <div style="color:red">{{form.errors.jumlah_kebutuhan}}</div>                            
+                            {% endif %}                                                               
+                            {% if form.errors.waktu_kebutuhan %}
+                                <div style="color:red">{{form.errors.waktu_kebutuhan}}</div>                            
+                            {% endif %}                                                                                                                              
+                            <!-- Cara Menemukan -->
                             <div class="form-group">
-                                <select name="{{ form.cara_menemukan.name }}" class="form-control-input" id="{{ form.cara_menemukan.id_for_label }}" required>
+                                <select name="{{ form.cara_menemukan.name }}" class="form-control-input" id="{{ form.cara_menemukan.id_for_label }}" onchange="showIsian(value)" required>
                                     {% for data in form.fields.cara_menemukan.choices %}
                                         <option value="{{data.0}}" {% if form.cara_menemukan.value|stringformat:'s' == data.0|stringformat:'s' %}SELECTED{% endif %}> {{data.1|capfirst}}</option>
-                                    {% endfor %}                    
+                                    {% endfor %}
                                 </select>                                
                                 <label class="label-control" for="{{ form.cara_menemukan.id_for_label }}">{{ form.cara_menemukan.label_tag }}</label>
                             </div>                            
                             {% if form.errors.cara_menemukan %}
                                 <div style="color:red">{{form.errors.cara_menemukan}}</div>                            
-                            {% endif %}                            
+                            {% endif %}
+                            <!-- isian -->
+                            <div class="form-group {{show_isian}}" id="div_isian">                                
+                                <input type="text" class="form-control-input" id="{{ formisian.isian.id_for_label }}" name="{{ formisian.isian.name }}" value="{% if formisian.isian.value %}{{ formisian.isian.value }}{% endif %}">
+                                <label class="label-control" for="{{ formisian.isian.id_for_label }}">{{ formisian.isian.label_tag }}</label>
+                            </div>
+                            {% if show_isian == '' %}                                                        
+                                {% if formisian.errors.isian %}
+                                    <div style="color:red">{{formisian.errors.isian}}</div>                            
+                                {% endif %}                                                        
+                            {% endif %}
+                            <!-- Submit -->
                             <div class="form-group">
                                 <button type="submit" class="form-control-submit-button">DAPATKAN HARGA KHUSUS</button>
                             </div>                            
@@ -333,3 +373,20 @@
 {% endblock content %}
 
 
+{% block javascript %}
+    <script>
+        cara_menemukans = JSON.parse("{{ peminat_cara_menemukan_json|escapejs }}");
+        function showIsian(value) {                
+            cara_menemukans.forEach(element => {
+                if (element.id == value) {
+                    if (element.has_isian) {                        
+                        document.getElementById('div_isian').classList.remove('d-none')
+                    }
+                    else{
+                        document.getElementById('div_isian').classList.add('d-none')
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

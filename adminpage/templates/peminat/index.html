@@ -37,6 +37,7 @@
               <th>Nama</th>
               <th>Nomor Whatsapp</th>
               <th>Alamat</th>
+              <th>Kebutuhan</th>
               <th>Cara Menemukan</th>
               <th>Aksi</th>
             </tr>
@@ -49,7 +50,18 @@
                 <td>{{peminat.nama}}</td>                        
                 <td>{{peminat.no_wa}}</td>       
                 <td>{{peminat.alamat}}</td>       
-                <td>{{peminat.cara_menemukan}}</td>       
+                <td>
+                  {{peminat.jumlah_kebutuhan}}                  
+                  {{peminat.get_waktu_kebutuhan_display}}
+                </td>
+                <td>
+                  {{peminat.cara_menemukan}}
+                  <ul>
+                    {% for isian in peminat.isianpeminatcaramenemukan_set.all %}
+                      <li>{{isian.isian}}</li>
+                    {% endfor %}                  
+                  </ul>
+                </td>       
                 <td>
                   <div class="d-flex">  
                     <span class="d-none d-lg-inline mx-1">
