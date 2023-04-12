@@ -24,14 +24,10 @@ CONTENT_TYPE = [
 class FormMenu(forms.ModelForm):
   class Meta:
     model = Menu
-    fields = ['nama', 'gambar', 'harga', 'keterangan', 'kategoris']
-    # labels = {      
-    #   'nama': _('Nama'),
-    #   'tahun': _('Tahun'),
-    #   'type': _('Tipe Laporan'),
-    #   'status': _('Status Periode'),
-    #   # 'template': _('Template'),
-    # }    
+    fields = ['nama', 'gambar', 'range_harga', 'harga', 'keterangan', 'kategoris']
+    labels = {      
+      'range_harga': _('Rentan Harga (bila dikosongi maka field harga yang akan muncul)'),
+    }    
 
 
   def clean(self):

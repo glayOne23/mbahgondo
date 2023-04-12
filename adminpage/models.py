@@ -29,6 +29,7 @@ class KategoriMenu(models.Model):
 class Menu(models.Model):    
     nama = models.CharField(max_length=255)
     keterangan = models.TextField()
+    range_harga = models.CharField(max_length=255, blank=True, null=True)
     harga = models.IntegerField()
     gambar = models.FileField(upload_to='menu/')
     kategoris = models.ManyToManyField(KategoriMenu, blank=True )
@@ -51,6 +52,7 @@ class PeminatCaraMenemukan(models.Model):
 
 class Peminat(models.Model):
     nama = models.CharField(max_length=255)
+    # id_number = models.CharField(max_length=255, default='m-1')
     no_wa = PhoneNumberField(unique=True)
     alamat = models.TextField()
     jumlah_kebutuhan = models.IntegerField()

@@ -1,6 +1,8 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
+{% load angka %}
+
 {% block title %}Menu{% endblock title %}
 
 {% block content %}
@@ -53,7 +55,13 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{menu.nama}}</h5>                        
-                                <p class="harga">{{menu.harga}}</p>
+                                <p class="harga">
+                                    {% if menu.range_harga %}
+                                        {{menu.range_harga}}
+                                    {% else %}
+                                        Rp{{menu.harga|rupiah}},00
+                                    {% endif %}
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -81,12 +89,6 @@
 
 
 {% block javascript %}
-<script>
-    hargas = document.getElementsByClassName('harga')
-    for (var i = 0; i < hargas.length; i++) {        
-        hargas.item(i).innerHTML = rupiah(hargas.item(i).innerHTML)
-    }    
-</script>
 {% endblock %}
 
 

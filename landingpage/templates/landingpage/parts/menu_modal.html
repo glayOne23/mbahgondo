@@ -49,14 +49,18 @@
     }    
 
     async function renderMenuModal(id) {
-        let menus = await getMenu(id);                  
+        let menus = await getMenu(id);                          
         nama = document.getElementById("menu_modal_nama")
         keterangan = document.getElementById("menu_modal_keterangan")
         harga = document.getElementById("menu_modal_harga")
         gambar = document.getElementById("menu_modal_gambar")        
         nama.innerHTML = menus['data'][0]['nama']
         keterangan.innerHTML = menus['data'][0]['keterangan']
-        harga.innerHTML = rupiah(`${menus['data'][0]['harga']}`)
+        if (menus['data'][0]['range_harga'] != null) {
+            harga.innerHTML = menus['data'][0]['range_harga']
+        } else {            
+            harga.innerHTML = rupiah(`${menus['data'][0]['harga']}`)
+        }
         gambar.src = menus['data'][0]['gambar']
     }
 

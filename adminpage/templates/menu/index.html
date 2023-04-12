@@ -47,7 +47,13 @@
               <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{menu.nama}}</td>                        
-                <td>{{menu.harga}}</td>                        
+                <td>
+                  {% if menu.range_harga %}
+                  {{menu.range_harga}}
+                  {% else %}
+                    {{menu.harga}}
+                  {% endif %}
+                </td>                        
                 <td>
                   {% if menu.gambar %}                  
                     <img src="{{menu.gambar.url}}" alt="" srcset="" style="max-width: 4em;">                  
