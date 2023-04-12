@@ -53,6 +53,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{menu.nama}}</h5>                        
+                                <p class="harga">{{menu.harga}}</p>
                             </div>
                         </div>
                     </a>
@@ -80,7 +81,12 @@
 
 
 {% block javascript %}
-
+<script>
+    hargas = document.getElementsByClassName('harga')
+    for (var i = 0; i < hargas.length; i++) {        
+        hargas.item(i).innerHTML = rupiah(hargas.item(i).innerHTML)
+    }    
+</script>
 {% endblock %}
 
 
