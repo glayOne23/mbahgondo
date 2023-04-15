@@ -22,10 +22,13 @@
     <div class="card bcard h-auto">
       
       <!-- Header Table -->
-      <div class="d-flex justify-content-end flex-column flex-sm-row px-2 px-sm-0 m-2">                                
-        <a type="button" class="btn btn-blue px-3 radius-round border-2 brc-black-tp10" href="{% url 'adminpage:peminat.add' %}">
-            <i class="fa fa-plus-circle"></i> Tambah peminat
-        </a>                    
+      <div class="d-flex justify-content-between flex-column flex-sm-row px-2 px-sm-0 m-2">                                
+        <button type="button" class="btn btn-success px-3 m-1 radius-round border-2 brc-black-tp10" data-toggle="modal" data-target="#cetak_peminat">
+            <i class="fas fa-file-excel"></i> Cetak
+        </button>                    
+        <a type="button" class="btn btn-blue px-3 m-1 radius-round border-2 brc-black-tp10" href="{% url 'adminpage:peminat.add' %}">
+          <i class="fa fa-plus-circle"></i> Tambah peminat
+      </a>                    
       </div>
 
       <div class="table-responsive">
@@ -93,6 +96,52 @@
     </div>
   </div>    
 
+
+  <!-- Modals are here -->
+
+  <!-- default example -->
+  <div class="modal fade" id="cetak_peminat" tabindex="-1" role="dialog" aria-labelledby="cetak_surat_masuk_label" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content border-none radius-0 border-t-4 brc-primary-m1 px-3">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary-d3" id="cetak_surat_masuk_label">
+                Cetak Daftar Peminat
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="{% url 'adminpage:peminat.cetak_excel' %}" method="GET">
+            <div class="modal-body">
+                <!-- Datetime picker plugin -->
+                <div>
+                    <div class="form-group">
+                        <label for="tgl_mulai" class="text-secondary-d3">Tanggal Mulai</label>
+                        <input type="date" required class="form-control brc-on-focus brc-primary-m1" id="tgl_mulai" name="tgl_mulai" />
+                    </div>
+                </div>                
+                <div>
+                    <div class="form-group">
+                        <label for="tgl_akhir" class="text-secondary-d3">Tanggal Akhir</label>
+                        <input type="date" required class="form-control brc-on-focus brc-primary-m1" id="tgl_akhir" name="tgl_akhir" />
+                    </div>
+                </div>        
+            </div>
+
+            <div class="modal-footer flex-nowrap bgc-white px-0 py-3">
+                <button type="button" class="btn btn-secondary px-4" data-dismiss="modal">
+                Tutup
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+                Cetak
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>  
 
 {% endblock %}
 

@@ -33,6 +33,7 @@ urlpatterns = [
         path('add', peminat.add, name='peminat.add'),        
         path('edit/<int:id>', peminat.edit, name='peminat.edit'),
         path('delete/<int:id>', peminat.delete, name='peminat.delete'),
+        path('cetak_excel', peminat.cetak_excel, name='peminat.cetak_excel'),
     ])),            
     path('katalog/', include([        
         path('index', katalog.index, name='katalog.index'),

@@ -1,3 +1,5 @@
+import io
+import xlsxwriter
 import json
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
@@ -129,3 +131,75 @@ def delete(request, id):
 
     # ===[Redirect]===
     return redirect('adminpage:peminat.index')
+
+
+@admin_only
+def cetak_excel(request):
+  """ Function untuk mencetak daftar peminat
+
+  Return:
+      | file .xlsx berisi daftar peminat berdasarkan tanggal surat
+  """
+
+
+  
+  tgl_mulai = request.GET['tgl_mulai']
+  tgl_akhir = request.GET['tgl_akhir']
+
+
+  output = io.BytesIO()
+  workbook = xlsxwriter.Workbook(output)
+  worksheet = workbook.add_worksheet()
+
+  # Get some data to write to the spreadsheet.
+  data_mentah = Peminat.objects.filter(created_at__range=[tgl_mulai, tgl_akhir])
+  no = 0
+  data_diolah = [
+    ["Nomor", "Id Number", "Tanggal Ajuan", "Nama", "Nomor Whatsapp","Alamat", "Kebutuhan", "Cara Menemukan"]
+  ]
+  worksheet.set_column(0, 0, 6)
+  worksheet.set_column(1, 1, 18)
+  worksheet.set_column(2, 2, 18)
+  worksheet.set_column(3, 3, 25)
+  worksheet.set_column(4, 4, 25)
+  worksheet.set_column(5, 5, 40)
+  worksheet.set_column(6, 6, 20)
+  worksheet.set_column(7, 7, 30)  
+  for row in data_mentah:
+      no += 1
+      temp_list = []
+      temp_list.append(no)
+      temp_list.append(row.id_number)
+      temp_list.append(F"{row.created_at}")
+      temp_list.append(row.nama)
+      temp_list.append(F"{row.no_wa}")
+      temp_list.append(row.alamat)
+      temp_list.append(F"{row.jumlah_kebutuhan} beber per-{row.waktu_kebutuhan}")
+      if row.cara_menemukan.has_isian:
+        isian_data = IsianPeminatCaraMenemukan.objects.filter(peminat = row, cara_menemukan = row.cara_menemukan)
+        isian = isian_data[0].isian if isian_data else ""
+        temp_list.append(F"{row.cara_menemukan} - {isian}")
+      else:
+          temp_list.append(F"{row.cara_menemukan}")
+      data_diolah.append(temp_list)
+  
+  # # Write some test data.
+  for row_num, columns in enumerate(data_diolah):
+      for col_num, cell_data in enumerate(columns):
+          worksheet.write(row_num, col_num, cell_data)
+
+  # Close the workbook before sending the data.
+  workbook.close()
+
+  # Rewind the buffer.
+  output.seek(0)
+
+  # Set up the Http response.
+  filename = 'Daftar Peminat.xlsx'
+  response = HttpResponse(
+      output,
+      content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  )
+  response['Content-Disposition'] = 'attachment; filename=%s' % filename
+
+  return response
