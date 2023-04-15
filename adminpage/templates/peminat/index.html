@@ -34,6 +34,8 @@
           <thead class="sticky-nav text-secondary-m1 text-uppercase text-85">
             <tr>
               <th class="pl-2 pl-lg-4">No</th>
+              <th>ID Number</th>
+              <th>Tanggal Ajuan</th>
               <th>Nama</th>
               <th>Nomor Whatsapp</th>
               <th>Alamat</th>
@@ -47,6 +49,8 @@
             {% for peminat in peminats %}                            
               <tr>
                 <td>{{ forloop.counter }}</td>
+                <td>{{ peminat.id_number }}</td>
+                <td>{{peminat.created_at}}</td>                        
                 <td>{{peminat.nama}}</td>                        
                 <td>{{peminat.no_wa}}</td>       
                 <td>{{peminat.alamat}}</td>       

@@ -52,9 +52,9 @@ def add(request):
             return redirect('adminpage:peminat.index')            
       else:    
         if context['form'].is_valid():        
-            peminat = context['form'].save()        
-            messages.success(request, 'Data berhasil ditambahkan!')
-            return redirect('adminpage:peminat.index')                
+          peminat = context['form'].save()        
+          messages.success(request, 'Data berhasil ditambahkan!')
+          return redirect('adminpage:peminat.index')                
 
   # ===[Render Template]===
   context['sidebar'] = 'peminat'
@@ -92,20 +92,26 @@ def edit(request, id):
         context['show_isian'] = ''        
 
     # ===[Editt Logic]===
-    if request.POST:        
-        if context['form'].is_valid():                            
-          peminat = context['form'].save(commit=False)                             
-          if context['formisian'].is_valid():            
-            isian = context['formisian'].save(commit=False)                                  
-            isian.peminat = peminat
-            isian.cara_menemukan = peminat.cara_menemukan
-            peminat.save()
-            isian.save()   
-            messages.success(request, 'Data berhasil diupdate')
-            return redirect('adminpage:peminat.index')            
-        else:
+    if request.POST:     
+        if context['show_isian'] == '':   
+          if context['form'].is_valid():                            
+            peminat = context['form'].save(commit=False)                             
+            if context['formisian'].is_valid():            
+              isian = context['formisian'].save(commit=False)                                  
+              isian.peminat = peminat
+              isian.cara_menemukan = peminat.cara_menemukan
+              peminat.save()
+              isian.save()   
+              messages.success(request, 'Data berhasil diupdate')
+              return redirect('adminpage:peminat.index')            
+          else:
             messages.error(request, context['form'].errors)
             return redirect('adminpage:peminat.edit', id=id)
+        else:    
+          if context['form'].is_valid():        
+            peminat = context['form'].save()        
+            messages.success(request, 'Data berhasil diupdate')
+            return redirect('adminpage:peminat.index')         
 
     # ===[Render Template]===
     context['sidebar'] = 'peminat'

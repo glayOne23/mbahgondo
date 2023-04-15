@@ -171,7 +171,7 @@
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
-                        {% if messages %}              
+                        {% comment %} {% if messages %}              
                             {% for message in messages %}
                                 {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}                                    
                                 <div class="pl-5 pr-5">
@@ -190,7 +190,7 @@
                                 </div>
                                 {% endif %}
                             {% endfor %}
-                        {% endif %}                                
+                        {% endif %} {% endcomment %}
                         <!-- Registration Form -->
                         <form id="registrationForm" method="post" action="{% url 'landingpage:beranda' %}#registration">
                             {% csrf_token %}
@@ -366,15 +366,18 @@
         </div> <!-- end of tabs -->
         <!-- end of details 2 -->    
 
+        <!-- Modal -->
+        {% include 'landingpage/parts/peminat_modal.html' %}                 
         
         <!-- Modal -->
-        {% include 'landingpage/parts/menu_modal.html' %} 
+        {% include 'landingpage/parts/menu_modal.html' %}         
 
 {% endblock content %}
 
 
 {% block javascript %}
     <script>
+        // Form
         cara_menemukans = JSON.parse("{{ peminat_cara_menemukan_json|escapejs }}");
         function showIsian(value) {                
             cara_menemukans.forEach(element => {
@@ -388,5 +391,61 @@
                 }
             });
         }
+        // End Form
+
+        // Popup
+        {% if messages %}              
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}                                                    
+                    $.magnificPopup.open({
+                        items: {
+                            src: '#peminat-lightbox', // CSS selector of an element on page that should be used as a popup
+                        },
+                        type: 'inline',           
+                        modal:true, 
+                        fixedContentPos: true,
+                        fixedBgPos: true,
+                        overflowY: 'auto',            
+                        closeOnContentClick: false,
+                        preloader: false,
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-slide-bottom'            
+            
+                        // You may add options here, they're exactly the same as for $.fn.magnificPopup call
+                        // Note that some settings that rely on click event (like disableOn or midClick) will not work here
+                    }, 0);
+                    //and also close, if you're into that ;)
+                    // $.magnificPopup.close();     
+                {% endif %}
+            {% endfor %}
+        {% endif %}        
+
+        
+        // untuk copy text
+        function copyText(element) {
+            var range, selection, worked;
+
+            if (document.body.createTextRange) {
+                range = document.body.createTextRange();
+                range.moveToElementText(element);
+                range.select();
+            } else if (window.getSelection) {
+                selection = window.getSelection();
+                range = document.createRange();
+                range.selectNodeContents(element);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+
+            try {
+                document.execCommand('copy');
+                alert('text berhasil dicopy');
+
+            }
+            catch (err) {
+                alert('terjadi error. Tidak dapat mencopy text');
+            }
+        }        
     </script>
 {% endblock %}

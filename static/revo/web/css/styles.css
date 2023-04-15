@@ -1995,3 +1995,8 @@ a:hover.back-to-top {
 	background-size: cover;			
 	height: 6em;
 }
+
+.ikon:hover {	
+	transform: scale(1.1);
+	transition: transform .3s; /* Animation */	
+}

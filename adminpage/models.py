@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.text import slugify
@@ -52,7 +55,7 @@ class PeminatCaraMenemukan(models.Model):
 
 class Peminat(models.Model):
     nama = models.CharField(max_length=255)
-    # id_number = models.CharField(max_length=255, default='m-1')
+    id_number = models.CharField(max_length=255)
     no_wa = PhoneNumberField(unique=True)
     alamat = models.TextField()
     jumlah_kebutuhan = models.IntegerField()
@@ -63,6 +66,17 @@ class Peminat(models.Model):
 
     def __str__(self):
         return self.nama    
+   
+    def save(self, *args, **kwargs):
+        created = self.pk is None        
+        if created:            
+            letters = string.ascii_uppercase
+            id_depan = ''.join(random.choice(letters) for i in range(3))
+            id_belakang = ''.join(random.choice(letters) for i in range(2))
+            last_data = Peminat.objects.all().order_by('-id')
+            nomor = 1 if not last_data else last_data[0].id + 1
+            self.id_number = F"{id_depan}{nomor}{id_belakang}".upper()        
+        super(Peminat, self).save(*args, **kwargs)        
     
 
 class IsianPeminatCaraMenemukan(models.Model):

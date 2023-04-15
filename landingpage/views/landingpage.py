@@ -41,12 +41,14 @@ def beranda(request):
             isian.peminat = peminat
             isian.cara_menemukan = peminat.cara_menemukan
             peminat.save()
-            isian.save() 
+            isian.save()
+            request.session['id_number'] = peminat.id_number
             messages.success(request, 'Selamat! Anda dapat mendownload harga khusus')            
             return redirect(reverse('landingpage:beranda')+"#registration")        
       else:    
         if context['form'].is_valid():        
-            peminat = context['form'].save()        
+            peminat = context['form'].save()       
+            request.session['id_number'] = peminat.id_number
             messages.success(request, 'Selamat! Anda dapat mendownload harga khusus')            
             return redirect(reverse('landingpage:beranda')+"#registration")            
 
