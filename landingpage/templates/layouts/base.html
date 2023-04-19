@@ -98,6 +98,20 @@
             content_type: 'product',
         })
     }            
+
+    function pixel_katalog_biasa() {
+        ttq.track('Download', {  
+            content_id: 'download_katalog_biasa',
+            content_type: 'product',
+        })
+    }    
+
+    function pixel_katalog_khusus() {
+        ttq.track('Download', {  
+            content_id: 'download_katalog_khusus',
+            content_type: 'product',
+        })
+    }        
 </script>
 
 {% block javascript %}{% endblock %}
