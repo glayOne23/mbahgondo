@@ -89,7 +89,9 @@
     // ============================ [Pixel Track Menu] ============================ 
     let kategori_menu = '{{kategori_show.nama}}'
     nama_kategori = kategori_menu == '' ? 'semua': kategori_menu.toLowerCase().replace(" ", "_");
+    id_kategori = kategori_menu == '' ? '0': '{{kategori_show.id}}'
     ttq.track('ViewContent', {
+        content_id: `daftarmenu${id_kategori}`,
         content_type: 'product_group',        
         content_name: `daftar_menu_${nama_kategori}`,        
     })
