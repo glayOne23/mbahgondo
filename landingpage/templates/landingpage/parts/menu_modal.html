@@ -62,6 +62,16 @@
             harga.innerHTML = rupiah(`${menus['data'][0]['harga']}`)
         }
         gambar.src = menus['data'][0]['gambar']
+
+        // ============================ [Pixel Track Menu Khusus] ============================ 
+        nama_menu = menus['data'][0]['nama']
+        nama_menu_lower = nama_menu.toLowerCase().replace(" ", "_");
+        ttq.track('ViewContent', {
+            content_id: `menu${menus['data'][0]['id']}`,
+            content_type: 'product',        
+            content_name: `menu_${nama_menu_lower}`,        
+        })
+        // ============================ [End Pixel Track Menu Khusus] ============================ 
     }
 
 </script>

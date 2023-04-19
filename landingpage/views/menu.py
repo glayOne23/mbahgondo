@@ -38,7 +38,7 @@ def json(request, id):
     if len(menus) > 0:
       menu = []
       for m in menus:
-        menu.append({'nama': m.nama, 'keterangan': m.keterangan, 'range_harga': m.range_harga, 'harga': m.harga, 'gambar': m.gambar.url})
+        menu.append({'id': m.id, 'nama': m.nama, 'keterangan': m.keterangan, 'range_harga': m.range_harga, 'harga': m.harga, 'gambar': m.gambar.url})
 
       return JsonResponse({"success": True, "data": menu}, status=200)  
     else:
