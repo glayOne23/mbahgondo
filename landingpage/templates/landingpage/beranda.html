@@ -133,6 +133,7 @@
         </header> <!-- end of header -->
         <!-- end of header -->
 
+
         <!-- Running Text -->
         <div class="runtext-container">
             <div class="main-runtext">
@@ -151,6 +152,7 @@
             </div>
         </div>        
         <!-- End Running Text -->
+
 
         <!-- Registration -->
         <div id="registration" class="form-1 bg-dark-blue">
@@ -267,7 +269,7 @@
                             {% endif %}
                             <!-- Submit -->
                             <div class="form-group">
-                                <button type="submit" class="form-control-submit-button">DAPATKAN HARGA KHUSUS</button>
+                                <button type="submit" class="form-control-submit-button" onclick="pixel_form_harga_khusus()">DAPATKAN HARGA KHUSUS</button>
                             </div>                            
                         </form>
                         <!-- end of registration form -->
@@ -447,5 +449,14 @@
                 alert('terjadi error. Tidak dapat mencopy text');
             }
         }        
+    </script>
+
+    <script>
+        function pixel_form_harga_khusus() {
+            ttq.track('SubmitForm', {  
+                content_id: 'form_harga_khusus',
+                content_type: 'product',
+            })
+        }
     </script>
 {% endblock %}
