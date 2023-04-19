@@ -85,6 +85,17 @@
        
 {% include 'landingpage/parts/menu_modal.html' %} 
 
+<script>
+    // ============================ [Pixel Track Menu] ============================ 
+    let kategori_menu = '{{kategori_show.nama}}'
+    nama_kategori = kategori_menu == '' ? 'semua': kategori_menu.toLowerCase().replace(" ", "_");
+    ttq.track('ViewContent', {
+        content_type: 'product_group',        
+        content_name: `daftar_menu_${nama_kategori}`,        
+    })
+    // ============================ [End Pixel Track Menu] ============================ 
+</script>
+
 {% endblock content %}
 
 
