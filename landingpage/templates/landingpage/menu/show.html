@@ -11,8 +11,8 @@
         "productID":"menu{{menu.id}}",
         "name":"{{menu.nama}}",
         "description":"{{menu.keterangan}}",
-        "url":"{{ request.get_host }}{% url 'landingpage:menu.show' menu.id %}",
-        "image":"{{ request.get_host }}{{menu.gambar.url}}",
+        "url":"https://{{ request.get_host }}{% url 'landingpage:menu.show' menu.id %}",
+        "image":"https://{{ request.get_host }}{{menu.gambar.url}}",
         "brand":"mbahgondo",
         "offers": [
             {
