@@ -16,7 +16,8 @@ urlpatterns = [
         # path('create/', menu.SetReviewerView.as_view(), name='menu.create'),
         # path('<int:id>/update/', menu.SetReviewerView.as_view(), name='menu.update'),
         # path('<int:id>/', menu.show, name='menu'),        
-        path('<int:id>/json', menu.json, name='menu.json'),
+        path('<int:id>/', menu.show, name='menu.show'),
+        path('<int:id>/json', menu.json_menu, name='menu.json'),
     ])),
     path('tentang-kami', landingpage.about, name='about'),    
     path('berita/', include([        

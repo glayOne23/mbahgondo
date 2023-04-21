@@ -1,0 +1,93 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load angka %}
+{% block title %}Detail Menu {{menu.nama}} {% endblock title %}
+
+{% block content %}
+
+<!-- Header -->
+<header class="ex-header bg-dark-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 offset-xl-1">
+                <h1>Detail Menu</h1>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</header> <!-- end of ex-header -->
+<!-- end of header -->
+
+<div class="ex-basic-1 pt-5 pb-5 bg-dark-blue">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="image-container">
+                    <img class="img-fluid" src="{{menu.gambar.url}}" id="menu_modal_gambar" alt="alternative">
+                </div> <!-- end of image-container -->
+            </div> <!-- end of col -->
+            <div class="col-lg-4 align-items-center ">
+                <div class="align-middle align-items-center ">
+                    <h3 id="menu_modal_nama">{{menu.nama}}</h3>
+                    <hr>
+                    <p id="menu_modal_keterangan">{{menu.keterangan}}</p>                        
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="media">
+                            {% if menu.range_harga %}
+                                {{menu.range_harga}}
+                            {% else %}
+                                Rp{{menu.harga|rupiah}},00
+                            {% endif %}                            
+                        </li>
+                    </ul>
+                    <a class="btn-solid-reg mb-2" href="{{katalog_biasa}}" target="_blank" onclick="pixel_katalog_biasa()">DOWNLOAD KATALOG</a> 
+                    <a class="btn-outline-reg" href="{% url 'landingpage:menu_by_kategori' 0 %}">KEMBALI</a>                     
+                </div>
+            </div> <!-- end of col -->
+        </div>
+
+    </div>
+
+</div>
+
+<script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Product",
+      "productID":"menu{{menu.id}}",
+      "name":"{{menu.nama}}",
+      "description":"{{menu.keterangan}}",
+      "url":"{% url 'landingpage:menu.show' menu.id %}",
+      "image":"{{menu.gambar.url}}",
+      "brand":"mbahgondo",
+      "offers": [
+        {
+          "@type": "Offer",
+          "price": "{% if menu.range_harga %}{{menu.range_harga}}{% else %}Rp{{menu.harga|rupiah}},00{% endif %}",
+          "priceCurrency": "IDR",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock"
+        }
+      ],
+    }
+</script>
+
+<script>
+    // ============================ [Pixel Track Menu Khusus] ============================     
+    // Tiktok Pixel
+    ttq.track('ViewContent', {
+        content_id: 'menu{{menu.id}}',
+        content_type: 'product',        
+        content_name: '{{menu.nama}}',        
+    })
+    // Meta Pixel
+    fbq('track', 'ViewContent', {
+        content_ids: ['menu{{menu.id}}'],
+        content_type: 'product',        
+        content_name: '{{menu.nama}}',
+    });
+    // ============================ [End Pixel Track Menu Khusus] ============================    
+</script>
+
+{% endblock content %}

@@ -2,6 +2,7 @@ from django.http import JsonResponse, HttpResponseNotFound
 from django.core.serializers import serialize
 from django.shortcuts import render, redirect, HttpResponse
 from adminpage.models import *
+import json
 
 
 def error_404(request, exception):
@@ -28,12 +29,25 @@ def by_kategori(request, kategori_id):
   
   context['kategoris'] = KategoriMenu.objects.all()
 
+  menu_json = [{'content_id': F'menu{menu.id}', 'content_type': 'product', 'quantity':1, 'price': menu.harga} for menu in context['menus']]
+  context['menu_json'] = json.dumps(menu_json)
+
   # ===[Render Template]===
   context['page'] = 'menu'
   return render(request, 'landingpage/menu/index.html', context)
 
 
-def json(request, id):  
+def show(request, id):
+  context = {}  
+  
+  context['katalog_biasa'] = Katalog.objects.filter(tipe="biasa").first().file.url if len(Katalog.objects.filter(tipe="biasa")) == 1 else None  
+  context['menu'] = Menu.objects.get(id=id)  
+
+  context['page'] = 'menu'
+  return render(request, 'landingpage/menu/show.html', context)
+
+
+def json_menu(request, id):  
     menus = Menu.objects.filter(id=id)
     if len(menus) > 0:
       menu = []

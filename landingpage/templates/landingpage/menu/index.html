@@ -87,14 +87,26 @@
 
 <script>
     // ============================ [Pixel Track Menu] ============================ 
+    let menu_json = JSON.parse(`{{ menu_json|safe }}`);    
     let kategori_menu = '{{kategori_show.nama}}'
-    nama_kategori = kategori_menu == '' ? 'semua': kategori_menu.toLowerCase().replace(" ", "_");
+    nama_kategori = kategori_menu == '' ? 'Semua': kategori_menu
     id_kategori = kategori_menu == '' ? '0': '{{kategori_show.id}}'
     ttq.track('ViewContent', {
-        content_id: `daftarmenu${id_kategori}`,
-        content_type: 'product_group',        
-        content_name: `daftar_menu_${nama_kategori}`,        
+        contents: menu_json,
+        // content_id: `daftarmenu${id_kategori}`,
+        // content_type: 'product_group',        
+        // content_name: `Daftar Menu ${nama_kategori}`,        
     })
+    // Meta Pixel
+    menu_ids = []
+    menu_json.forEach(menu => {
+        menu_ids.push(menu['content_id'])
+    });    
+    fbq('track', 'ViewContent', {
+        content_ids: menu_ids,
+        content_type: 'product',        
+        // content_name: `Daftar Menu ${nama_kategori}`,        
+    });
     // ============================ [End Pixel Track Menu] ============================ 
 </script>
 
