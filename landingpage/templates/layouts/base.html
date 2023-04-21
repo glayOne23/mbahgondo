@@ -109,14 +109,17 @@
 
 <script>
     function pixel_wa() {
+        // Tiktok Pixel
         ttq.track('ClickButton', {  
             content_id: 'button_wa',
             content_type: 'product',
         })
+        // Meta Pixel
+        fbq('track', 'Contact');
     }            
 
     function pixel_katalog_biasa() {
-        ttq.track('Download', {  
+        ttq.track('Download', {
             content_id: 'download_katalog_biasa',
             content_type: 'product',
         })
@@ -127,7 +130,12 @@
             content_id: 'download_katalog_khusus',
             content_type: 'product',
         })
-    }        
+    }    
+    
+    function pixel_find_location() {
+        // Meta Pixel
+        fbq('track', 'FindLocation');
+    }    
 </script>
 
 {% block javascript %}{% endblock %}

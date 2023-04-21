@@ -453,10 +453,13 @@
 
     <script>
         function pixel_form_harga_khusus() {
+            // Tiktok Pixel   
             ttq.track('SubmitForm', {  
                 content_id: 'form_harga_khusus',
                 content_type: 'product',
             })
+            // Meta Pixel
+            fbq('track', 'SubmitApplication');
         }
     </script>
 {% endblock %}
