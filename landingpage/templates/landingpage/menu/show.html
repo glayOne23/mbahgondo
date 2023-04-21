@@ -3,6 +3,30 @@
 {% load angka %}
 {% block title %}Detail Menu {{menu.nama}} {% endblock title %}
 
+{% block head %}
+    <script type="application/ld+json">
+        {
+        "@context":"https://schema.org",
+        "@type":"Product",
+        "productID":"menu{{menu.id}}",
+        "name":"{{menu.nama}}",
+        "description":"{{menu.keterangan}}",
+        "url":"{{ request.get_host }}/{% url 'landingpage:menu.show' menu.id %}",
+        "image":"{{ request.get_host }}/{{menu.gambar.url}}",
+        "brand":"mbahgondo",
+        "offers": [
+            {
+            "@type": "Offer",
+            "price": "{% if menu.range_harga %}{{menu.range_harga}}{% else %}Rp{{menu.harga|rupiah}},00{% endif %}",
+            "priceCurrency": "IDR",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock"
+            }
+        ],
+        }
+    </script>
+{% endblock %}
+
 {% block content %}
 
 <!-- Header -->
@@ -51,27 +75,6 @@
 
 </div>
 
-<script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"Product",
-      "productID":"menu{{menu.id}}",
-      "name":"{{menu.nama}}",
-      "description":"{{menu.keterangan}}",
-      "url":"{% url 'landingpage:menu.show' menu.id %}",
-      "image":"{{menu.gambar.url}}",
-      "brand":"mbahgondo",
-      "offers": [
-        {
-          "@type": "Offer",
-          "price": "{% if menu.range_harga %}{{menu.range_harga}}{% else %}Rp{{menu.harga|rupiah}},00{% endif %}",
-          "priceCurrency": "IDR",
-          "itemCondition": "https://schema.org/NewCondition",
-          "availability": "https://schema.org/InStock"
-        }
-      ],
-    }
-</script>
 
 <script>
     // ============================ [Pixel Track Menu Khusus] ============================     
