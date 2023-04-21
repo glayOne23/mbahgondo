@@ -12,7 +12,7 @@
     <meta property="product:brand" content="Mbah Gondo">
     <meta property="product:availability" content="in stock">
     <meta property="product:condition" content="new">
-    <meta property="product:price:amount" content="{% if menu.range_harga %}{{menu.range_harga}}{% else %}Rp{{menu.harga|rupiah}},00{% endif %}">
+    <meta property="product:price:amount" content="{{menu.harga}}">
     <meta property="product:price:currency" content="IDR">
     <meta property="product:retailer_item_id" content="menu{{menu.id}}">
     <meta property="product:item_group_id" content="daftar_menu">
